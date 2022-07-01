@@ -1,6 +1,7 @@
-@import './common';
 @import './utils/mixin';
 @import './utils/variables';
+@import './utils/brakpoints';
+@import './base/common';
 @import './base/container';
 @import './base/reset';
 @import './layout/header-home';
