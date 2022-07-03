@@ -5,3 +5,5 @@
  * 4) Написать функцию для переключения страниц 
  * 
  */
+
+import * as firebase from "./js/firebase-auth.js"

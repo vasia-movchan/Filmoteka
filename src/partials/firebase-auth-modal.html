@@ -1,0 +1,26 @@
+<a href="#openModal-auth" class="modal-auth__btn-open"></a>
+
+<div id="openModal-auth" class="modal-auth">
+    <div class="modal-auth__dialog">
+      <div class="modal-auth__content">
+        <div class="modal-auth__header">
+          <h3 class="modal-auth__title"></h3>
+          <a href="#close-auth" title="Close-auth" class="modal-auth__close">×</a>
+        </div>
+        <div class="modal-auth__body">    
+            <form name="modal-auth" autocomplete="on" novalidate>
+                <label class="modal-auth__label-email">
+                  Email
+                  <input type="email" name="email" />
+                </label>              
+                <label class="modal-auth__label-password">
+                  Password
+                  <input type="password" name="password" />
+                </label>              
+                <button type="submit" class="modal-auth__btn modal-auth__btn--login">Login</button>                                
+              </form>
+              <button type="button" class="modal-auth__btn modal-auth__btn--logout ">LogOut</button>
+        </div>
+      </div>
+    </div>
+  </div>
