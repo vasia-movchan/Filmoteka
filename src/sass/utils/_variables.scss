@@ -1,10 +1,37 @@
-$header-text-color: #FFFFFF;
-$hero-primary-text-color: #000000;
-$hero-warning-text-color: #FF001B;
-$hero-underline-color: #FF6B08;
-$hero-secondary-text-color: #FF6B08;
-$hero-primary-button-color: #FF6B08;
-$hero-secondary-button-color: #F7F7F7;
-$footer-primary-text-color: #545454;
-$modal-button-color: #FF6B01;
-$modal-secondary-text-color: #8C8C8C
+:root {
+  --header-text-color: #ffffff;
+  --bg-color: #ffffff;
+  --hero-primary-text-color: #000000;
+  --hero-warning-text-color: #ff001b;
+  --hero-underline-color: #ff6b08;
+  --hero-secondary-text-color: #ff6b08;
+  --hero-primary-button-color: #ff6b08;
+  --hero-secondary-button-color: #f7f7f7;
+  --footer-primary-text-color: #545454;
+  --modal-button-color: #ff6b01;
+  --modal-secondary-text-color: #8c8c8c;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+// $header-text-color: #FFFFFF;
+// $hero-primary-text-color: #000000;
+// $hero-warning-text-color: #FF001B;
+// $hero-underline-color: #FF6B08;
+// $hero-secondary-text-color: #FF6B08;
+// $hero-primary-button-color: #FF6B08;
+// $hero-secondary-button-color: #F7F7F7;
+// $footer-primary-text-color: #545454;
+// $modal-button-color: #FF6B01;
+// $modal-secondary-text-color: #8C8C8C
