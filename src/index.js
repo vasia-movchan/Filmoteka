@@ -1,3 +1,7 @@
+import * as modal_team from './js/modal-team';
+import 'animate.css';
+import './js/header';
+import * as firebase from "./js/firebase-auth.js"
 /*
  * 1) Создать обьект FilmApiService
  * 2) Создать обьект PagesButton
@@ -5,6 +9,5 @@
  * 4) Написать функцию для переключения страниц
  *
  */
-import 'animate.css';
-import './js/header';
-import * as firebase from "./js/firebase-auth.js"
+
+

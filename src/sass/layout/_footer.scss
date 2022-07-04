@@ -1,0 +1,70 @@
+.footer {
+    background-color: $hero-secondary-button-color;
+    color: $footer-primary-text-color;
+    text-align: center;
+
+    font-family: 'Roboto';
+
+    @include font(400, 14px, 16px);
+
+    @media (min-width: $tablet) {
+        @include font(400, 16px, 19px);
+        }
+}
+
+.footer__container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    @media (min-width: $mobile) {
+        width: $mobile;
+    }
+    
+    @media (min-width: $tablet) {
+        width: $tablet;
+        display: flex;
+        justify-content: center;
+    
+    }
+    
+    @media (min-width: $desktop) {
+        width: $desktop;
+    }
+}
+
+.footer__text {
+@media (max-width: 767px) {
+    margin-bottom: 9.9px;
+}
+
+    @media (min-width: $tablet) {
+        margin-right: 4px;
+    }
+}
+
+.footer__team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__icon {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+
+    @media (min-width: $tablet) {
+            height: 12.88;
+        }
+}
+
+.footer__link {
+    display: inline-block;
+    color: $footer-primary-text-color;
+}
+
+
+
