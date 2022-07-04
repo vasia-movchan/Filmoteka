@@ -7,3 +7,4 @@
  */
 import 'animate.css';
 import './js/header';
+import * as firebase from "./js/firebase-auth.js"
