@@ -1,0 +1,63 @@
+<header class="header js-header header-bg">
+  <div
+    class="container header__container animate__animated animate__fadeInDown"
+  >
+    <div class="header__sections">
+      <nav class="site-nav js-site-nav">
+        <a class="link logo js-logo" href="" lang="en">
+          <svg class="logo__icon" width="24" height="24">
+            <use href="/src/images/svg/sprite.svg#icon-film"></use>
+          </svg>
+          <span class="logo__title">Filmoteka</span>
+        </a>
+        <ul class="list site-list">
+          <li class="site-list__item">
+            <a
+              class="link site-list__link js-home_page current"
+              href=""
+              id="home"
+              >Home</a
+            >
+          </li>
+          <li class="site-list__item">
+            <a class="link site-list__link js-lib_page" href="" id="my-lib"
+              >My Library</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <form class="search-form js-search-form" id="search-form">
+        <input
+          type="text"
+          name="search"
+          autocomplete="off"
+          class="search-form__field js-search-input"
+          placeholder="Movie search"
+        />
+        <button type="submit" class="search-btn">
+          <svg class="search__icon" width="12" height="12">
+            <use href="/src/images/svg/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+      <div class="buttons js-buttons visually-hidden">
+        <button
+          class="button_lib btn_watched active-btn js-btn_watched"
+          data-libType="watched"
+          type="button"
+        >
+          Watched
+        </button>
+        <button
+          class="button_lib btn_queue js-btn_queue"
+          type="button"
+          data-libType="queue"
+        >
+          Queue
+        </button>
+      </div>
+    </div>
+    <div class="js-warn header-warn"></div>
+    <div class="js-search-res header-warn"></div>
+  </div>
+</header>

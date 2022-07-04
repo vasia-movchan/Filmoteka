@@ -18,6 +18,7 @@
     "url": "https://github.com/AndreyHerzhov/Filmoteka/issues"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
