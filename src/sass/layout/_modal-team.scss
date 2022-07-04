@@ -1,0 +1,157 @@
+.body.modal-open {
+    overflow: hidden;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    &.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: 300ms linear 0.7s;
+        }
+}
+
+.team__modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    overflow: auto;
+    padding: 20px;
+    
+    font-family: 'Roboto';
+    background-color: hsla(0, 0%, 100%, .9);
+
+    @media (max-width: #{$tablet - 1}) {
+           height: 100%;
+        }
+
+    @media (min-width: $mobile) {
+        width: 280px;
+        }
+    
+        @media (min-width: $tablet) {
+            width: 700px;
+        }
+
+        @media (min-width: $desktop) {
+            width: 800px; 
+        }
+    
+}
+
+.team__title {
+    margin-top: 15px;
+    @include font(600, 24px, 16px);
+
+
+    @media (min-width: $tablet) {
+           margin-bottom: 15px;
+    
+        }
+}
+
+.team__items {
+    @media (min-width: $tablet) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+.team__item {
+    /* margin-top: 20px; */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+        0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 0px 0px 4px 4px;
+
+    @media (max-width: #{$tablet - 1}) {
+        margin-top: 10px;
+        
+    }
+
+    @media (min-width: $tablet) {
+        flex-basis: calc((100% - 20px) / 3);
+       
+    }
+}
+
+.team__card {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 2px solid $hero-underline-color;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+}
+
+.team__member {
+    margin-right: 4px;
+}
+
+.sociallinks__icon {
+    fill: $hero-primary-text-color;
+}
+
+.sociallinks__icon:hover,
+.sociallinks__icon:focus {
+    fill: $modal-button-color;
+}
+
+.team__position {
+    color: $footer-primary-text-color;
+    @include font(400, 12px, 20px);
+    margin-top: 5px;
+}
+
+.button  {
+position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: $modal-button-color;
+  cursor: pointer;
+  outline: none;
+  background-position: center;
+  background-size: 30%;
+  background-repeat: no-repeat;
+
+}
+
+.icon {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    fill: black;
+ 
+}

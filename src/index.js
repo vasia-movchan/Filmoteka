@@ -1,0 +1,1 @@
+import * as modal_team from './js/modal-team';
