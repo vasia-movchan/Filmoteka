@@ -5,10 +5,10 @@
 
     font-family: 'Roboto';
 
-    @include font(400, 14px, 16px);
+    @include font(400, 14px, 16px, 1.5, center);
 
     @media (min-width: $tablet) {
-        @include font(400, 16px, 19px);
+        @include font(400, 16px, 19px, 1.5, center);
         }
 }
 

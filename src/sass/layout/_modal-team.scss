@@ -53,7 +53,7 @@
 
 .team__title {
     margin-top: 15px;
-    @include font(600, 24px, 16px);
+    @include font(600, 24px, 16px,1.5, center );
 
 
     @media (min-width: $tablet) {
@@ -122,7 +122,7 @@
 
 .team__position {
     color: $footer-primary-text-color;
-    @include font(400, 12px, 20px);
+    @include font(400, 12px, 20px, 1.15, center);
     margin-top: 5px;
 }
 
