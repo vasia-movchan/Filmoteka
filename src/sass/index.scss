@@ -6,12 +6,10 @@
 @import './base/container';
 @import './base/reset';
 
-@import './layout/header-home';
-@import './layout/header-mylib';
-@import './layout/hero';
-@import './layout/modal-film';
+@import './layout/header';
+@import './layout/gallery';
 @import './layout/pagination';
+@import './layout/modal-film';
+@import './layout/modal-team';
 @import './layout/footer';
 @import './layout/firebase-auth';
-
-

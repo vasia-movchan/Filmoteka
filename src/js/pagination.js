@@ -1,7 +1,7 @@
 import { refs } from "./refs";
 import { FilmApiService } from "./api-service";
 
-function onPaginationClick(event) {
+export function onPaginationClick(event) {
   if (event.target.dataset.btn === 'prev') {
     FilmApiService.currentPage -= 1;
     console.log(FilmApiService.currentPage);
@@ -53,7 +53,7 @@ function onPaginationClick(event) {
   }
 }
 
-function renderPagination(currentPage, totalPages) {
+export function renderPagination(currentPage, totalPages) {
   refs.firstPageBtn.textContent = 1;
   refs.lastPageBtn.textContent = totalPages;
   // -------- Conditions for initial numeric buttons rendering -------- 
