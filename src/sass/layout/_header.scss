@@ -208,6 +208,11 @@
   color: var(--hero-warning-text-color);
 }
 
+.js-search-res {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
 // ========== MY-LIB ========== //
 
 .lib-bg {

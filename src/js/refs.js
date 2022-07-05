@@ -9,6 +9,7 @@ export const refs = {
   searchForm: document.querySelector('.js-search-form'),
   searchInput: document.querySelector('.js-search-input'),
   headerButtons: document.querySelector('.js-buttons'),
+  searchWarning: document.querySelector('.js-search-res'),
 
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
@@ -31,7 +32,7 @@ export const refs = {
   dotsFwdBtn: document.querySelector('[data-btn="dots-fwd"]'),
   lastPageBtn: document.querySelector('[data-btn="last"]'),
   nextBtn: document.querySelector('[data-btn="next"]'),
-  pagination: document.querySelector('.pagination__list'),
+  pagination: document.querySelector('.pagination'),
 
 };
 

@@ -24,6 +24,15 @@ async function loadMoviesByQuery(event) {
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
   const searchResult = await filmApiService.getMoviesByQuery();
+
+  if (searchResult.data.results.length === 0) {
+    refs.searchWarning.style.opacity = 1;
+    refs.pagination.classList.add('visually-hidden');
+  } else {
+    refs.searchWarning.style.opacity = 0;
+    refs.pagination.classList.remove('visually-hidden');
+  }
+  
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
   // console.log(fetchAPI.dataType);
   const createGalleryByQuery = searchResult.data.results.map(renderMovieCard).join('');
