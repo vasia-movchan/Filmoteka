@@ -1,13 +1,16 @@
 @import './utils/mixin';
 @import './utils/variables';
 @import './utils/brakpoints';
+
 @import './base/common';
 @import './base/container';
 @import './base/reset';
+
 @import './layout/header-home';
 @import './layout/header-mylib';
 @import './layout/hero';
 @import './layout/modal-film';
+@import './layout/pagination';
 @import './layout/footer';
 @import './layout/firebase-auth';
 

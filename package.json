@@ -18,6 +18,7 @@
     "url": "https://github.com/AndreyHerzhov/Filmoteka/issues"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "firebase": "^9.8.4",
     "modern-normalize": "^1.1.0"
   },
