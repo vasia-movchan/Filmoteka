@@ -1,55 +1,49 @@
 import { refs } from "./refs";
 import { FilmApiService } from "./api-service";
+import { loadTrendingMovies } from "./load-homepage";
+
+const filmApiService = new FilmApiService();
 
 export function onPaginationClick(event) {
   if (event.target.dataset.btn === 'prev') {
-    FilmApiService.currentPage -= 1;
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage -= 1;
   }
   if (event.target.dataset.btn === 'next') {
-    FilmApiService.currentPage += 1;
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage += 1;
   }
   if (event.target.dataset.btn === 'first') {
-    FilmApiService.currentPage = 1;
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = 1;
   }
   if (event.target.dataset.btn === 'last') {
-    FilmApiService.currentPage = fetchAPI.totalPages;
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = filmApiService.totalPages;
   }
   if (event.target.dataset.btn === '1') {
-    FilmApiService.currentPage = Number(refs.btn1.textContent);
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = Number(refs.btn1.textContent);
   }
   if (event.target.dataset.btn === '2') {
-    FilmApiService.currentPage = Number(refs.btn2.textContent);
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = Number(refs.btn2.textContent);
   }
   if (event.target.dataset.btn === '3') {
-    FilmApiService.currentPage = Number(refs.btn3.textContent);
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = Number(refs.btn3.textContent);
   }
   if (event.target.dataset.btn === '4') {
-    FilmApiService.currentPage = Number(refs.btn4.textContent);
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = Number(refs.btn4.textContent);
   }
   if (event.target.dataset.btn === '5') {
-    FilmApiService.currentPage = Number(refs.btn5.textContent);
-    console.log(FilmApiService.currentPage);
+    filmApiService.currentPage = Number(refs.btn5.textContent);
   }
-  if (event.target.className = 'pagination__item') {
-    scrollToTop();
-  }
+  // if (event.target.className = 'pagination__item') {
+  //   scrollToTop();
+  // }
   
-  switch (FilmApiService.dataType) {
+  switch (filmApiService.dataType) {
     case 'trending':
-      getTrendingMovies();
+      loadTrendingMovies();
       break;
     
-    case 'search':
-      getMoviesBySearch();
-      break;
+    // case 'search':
+    //   getMoviesBySearch();
+    //   break;
   }
 }
 

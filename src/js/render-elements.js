@@ -1,6 +1,6 @@
 export function renderMovieCard({ poster_path, id, title, genre_ids, release_date }) {
   // const extractGenres = genres.map(genre => genre.name).join(', ');
-  let BASE_URL = 'https://image.tmdb.org/t/p/w500/';
+  let BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
   if (poster_path === null) {
     BASE_URL = '';
