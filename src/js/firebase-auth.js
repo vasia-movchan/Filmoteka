@@ -12,19 +12,37 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const modal = document.querySelector('#openModal-auth');
 const form = document.querySelector('[name="modal-auth"]');
+const emailForm = document.querySelector('.modal-auth__email');
+const passwordForm = document.querySelector('.modal-auth__password');
+const btnLogin = document.querySelector('.modal-auth__btn--login');
 const btnLogout = document.querySelector('.modal-auth__btn--logout');
 const title = document.querySelector('.modal-auth__title');
 const btnOpenModal = document.querySelector('.modal-auth__btn-open');
+const btnCloseModal = document.querySelector('.modal-auth__close');
 let uid = null;
 
 form.addEventListener('submit', onSubmitLogin);
 btnLogout.addEventListener('click', onLogoutBtn);
+btnOpenModal.addEventListener('click', onModalOpen);
+btnCloseModal.addEventListener('click', onModalClose);
+
+function onModalOpen (e) {
+  e.preventDefault();
+  modal.classList.add('modal-open');
+}
+
+function onModalClose (e) {
+  e.preventDefault();
+  modal.classList.remove('modal-open');
+}
 
 function onSubmitLogin (event) {
   event.preventDefault();
   const email = event.target.elements.email.value;
   const password = event.target.elements.password.value;
+  console.log(email);
   
   if(email.length < 5 || password.length < 6) {
     alert('Please, enter your email and password (at least 6 characters)')
@@ -84,7 +102,10 @@ onAuthStateChanged(auth, (user) => {
     console.log(user)
     if (user) {
       uid = user.uid;
-      form.classList.add('is-hidden-auth');
+      // form.classList.add('is-hidden-auth');
+      emailForm.classList.add('is-hidden-auth');
+      passwordForm.classList.add('is-hidden-auth');
+      btnLogin.classList.add('is-hidden-auth');
       btnLogout.classList.remove('is-hidden-auth');
       title.textContent = `Hello, ${user.email.split('@')[0]}`;
       btnOpenModal.textContent = "LogOut"
@@ -92,11 +113,14 @@ onAuthStateChanged(auth, (user) => {
       console.log('удачно вошли');
     } else {
       uid = null;
-      form.classList.remove('is-hidden-auth');
+      // form.classList.remove('is-hidden-auth');
+      emailForm.classList.remove('is-hidden-auth');
+      passwordForm.classList.remove('is-hidden-auth');
+      btnLogin.classList.remove('is-hidden-auth');
       btnLogout.classList.add('is-hidden-auth');
       console.log('удачно вышли');
       title.textContent = "Login form";
-      btnOpenModal.textContent = "Login"
+      btnOpenModal.textContent = "Login";
       btnOpenModal.style.backgroundColor = "red";
     }
   });
