@@ -4,6 +4,8 @@ import './js/header';
 import './js/load-homepage';
 // import './js/pagination';
 import * as firebase from "./js/firebase-auth.js"
+
+import './js/top-button';
 /*
  * 1) Создать обьект FilmApiService
  * 2) Создать обьект PagesButton

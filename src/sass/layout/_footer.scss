@@ -64,6 +64,10 @@
 .footer__link {
     display: inline-block;
     color: $footer-primary-text-color;
+
+    &:hover {
+        color: $modal-button-color;;
+    }
 }
 
 
