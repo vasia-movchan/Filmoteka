@@ -24,6 +24,10 @@
   }
 }
 
+.pagination__prev-btn > *, .pagination__next-btn > * {
+  pointer-events: none;
+}
+
 .pagination__icon {
   width: 12px;
   height: 12px;

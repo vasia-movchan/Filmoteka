@@ -3,12 +3,13 @@
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 20px;
   padding: 20px 20px 40px;
-  min-height: calc(100vh - 295px);
+  min-height: calc(100vh - 332px);
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
     padding: 60px 32px;
+    min-height: calc(100vh - 295px);
   }
 
   @media screen and (min-width: 1280px) {

@@ -15,7 +15,7 @@ async function loadTrendingMovies() {
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  console.log(responseWithGenreNames);
+  console.log(filmApiService.currentPage);
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
   refs.gallery.innerHTML = createTrendPage;  
 }
@@ -63,6 +63,7 @@ function onPaginationClick(event) {
   }
   if (event.target.dataset.btn === 'next') {
     filmApiService.currentPage += 1;
+    // console.log(event.target.parentNode);
   }
   if (event.target.dataset.btn === 'first') {
     filmApiService.currentPage = 1;
@@ -85,9 +86,9 @@ function onPaginationClick(event) {
   if (event.target.dataset.btn === '5') {
     filmApiService.currentPage = Number(refs.btn5.textContent);
   }
-  if (event.target.className = 'pagination__item') {
-    scrollToTop();
-  }
+  // if (event.target.className = 'pagination__item') {
+  //   scrollToTop();
+  // }
   
   switch (filmApiService.dataType) {
     case 'trending':
