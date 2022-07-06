@@ -20,7 +20,14 @@
 
 .movie-card {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+.movie-card__link {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .movie-card__image {
@@ -43,13 +50,14 @@
   }
 }
 
-.movie-card__text {
+.movie-card__title {
   color: #000;
   margin-top: 10px;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   line-height: calc(16 / 12);
+  flex-grow: 1;
 
   @media screen and (min-width: 768px) {
     margin-top: 8px;
@@ -63,8 +71,60 @@
   }
 }
 
+.movie-card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+}
+
+// .movie-card__details {
+//   display: flex;
+//   flex-direction: column;
+// }
+
 .movie-card__info {
   color: #FF6B08;
+  font-size: 12px;
   text-transform: none;
+  font-weight: 500;
   margin-top: 0;
+  
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 }
+
+.movie-card__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card__rating-icon {
+  width: 12px;
+  height: 12px;
+  background-image: url(/src/images/svg/star.svg);
+  background-size: contain;
+  @media screen and (min-width: 768px) {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.movie-card__rating-number {
+  color: #FF6B08;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 8px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+

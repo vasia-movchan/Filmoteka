@@ -10,11 +10,13 @@ refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 
 async function loadTrendingMovies() {
-  const trendResponse = await filmApiService.getTrendingMovies();
-  // console.log(filmApiService.currentPage);
+  const response = await filmApiService.getTrendingMovies();
+  const genres = await filmApiService.getGenres();
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  const createTrendPage = trendResponse.data.results.map(renderMovieCard).join('');
+  console.log(responseWithGenreNames);
+  const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
   refs.gallery.innerHTML = createTrendPage;  
 }
 
@@ -23,9 +25,11 @@ async function loadMoviesByQuery(event) {
 
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
-  const searchResult = await filmApiService.getMoviesByQuery();
+  const response = await filmApiService.getMoviesByQuery();
+  const genres = await filmApiService.getGenres();
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
-  if (searchResult.data.results.length === 0) {
+  if (response.data.results.length === 0) {
     refs.searchWarning.style.opacity = 1;
     refs.pagination.classList.add('visually-hidden');
   } else {
@@ -34,18 +38,21 @@ async function loadMoviesByQuery(event) {
   }
   
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  // console.log(fetchAPI.dataType);
-  const createGalleryByQuery = searchResult.data.results.map(renderMovieCard).join('');
-  // console.log(searchResult);
+
+  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
+  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
 async function loadPagesBySearch() {
-  const searchResult = await filmApiService.getMoviesByQuery();
+  const response = await filmApiService.getMoviesByQuery();
+  const genres = await filmApiService.getGenres();
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  // console.log(fetchAPI.dataType);
-  const createGalleryByQuery = searchResult.data.results.map(renderMovieCard).join('');
-  // console.log(searchResult);
+  
+  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
+  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
