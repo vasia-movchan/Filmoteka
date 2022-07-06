@@ -15,7 +15,7 @@ async function loadTrendingMovies() {
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  console.log(filmApiService.currentPage);
+
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
   refs.gallery.innerHTML = createTrendPage;  
 }
@@ -25,6 +25,7 @@ async function loadMoviesByQuery(event) {
 
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
+  refs.searchInput.value = '';
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
@@ -39,8 +40,7 @@ async function loadMoviesByQuery(event) {
   
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
-  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
+  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
@@ -52,7 +52,6 @@ async function loadPagesBySearch() {
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
   
   const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
@@ -63,7 +62,6 @@ function onPaginationClick(event) {
   }
   if (event.target.dataset.btn === 'next') {
     filmApiService.currentPage += 1;
-    // console.log(event.target.parentNode);
   }
   if (event.target.dataset.btn === 'first') {
     filmApiService.currentPage = 1;
