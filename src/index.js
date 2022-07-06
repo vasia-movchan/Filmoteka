@@ -1,6 +1,8 @@
 import * as modal_team from './js/modal-team';
 import 'animate.css';
 import './js/header';
+import './js/load-homepage';
+// import './js/pagination';
 import * as firebase from "./js/firebase-auth.js"
 /*
  * 1) Создать обьект FilmApiService

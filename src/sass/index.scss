@@ -1,11 +1,15 @@
 @import './utils/mixin';
 @import './utils/variables';
 @import './utils/brakpoints';
+@import './utils/visually-hidden';
+
 @import './base/common';
 @import './base/container';
 @import './base/reset';
+
 @import './layout/header';
-@import './layout/hero';
+@import './layout/gallery';
+@import './layout/pagination';
 @import './layout/modal-film';
 @import './layout/modal-team';
 @import './layout/footer';
