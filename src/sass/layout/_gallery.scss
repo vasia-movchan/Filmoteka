@@ -19,8 +19,8 @@
 }
 
 .movie-card {
+  position: relative;
   width: 100%;
-
 }
 
 .movie-card__image {
@@ -43,7 +43,7 @@
   }
 }
 
-.movie-card__text {
+.movie-card__title {
   color: #000;
   margin-top: 10px;
   font-size: 12px;
@@ -63,8 +63,58 @@
   }
 }
 
+.movie-card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+}
+
 .movie-card__info {
   color: #FF6B08;
+  font-size: 12px;
   text-transform: none;
+  font-weight: 500;
   margin-top: 0;
+  
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
 }
+
+.movie-card__rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-card__rating-text {
+  color: #FF6B08;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0 8px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.movie-card__rating-number {
+  background-color: #FF6B08;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+

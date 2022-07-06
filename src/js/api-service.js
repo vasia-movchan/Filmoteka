@@ -77,4 +77,8 @@ export class FilmApiService {
     console.log(error);
     }
   }
+
+  generateGenresNamesFromID(response, genres) {
+    return response.data.results.map(movie => ({ ...movie, genres: movie.genre_ids.map(id => genres.filter(genre => genre.id === id)).flat().map(genre => genre.name).slice(0, 2).join(', ') })); 
+  }
 }
