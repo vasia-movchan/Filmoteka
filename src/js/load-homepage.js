@@ -1,7 +1,8 @@
 import { refs } from "./refs";
 import { FilmApiService } from "./api-service";
 // import { onPaginationClick, renderPagination } from "./pagination";
-import { renderMovieCard } from "./render-elements";
+import { renderMovieCard, renderOopsNoResults } from "./render-elements";
+
 
 const filmApiService = new FilmApiService();
 
@@ -15,7 +16,7 @@ async function loadTrendingMovies() {
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  console.log(filmApiService.currentPage);
+
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
   refs.gallery.innerHTML = createTrendPage;  
 }
@@ -25,23 +26,31 @@ async function loadMoviesByQuery(event) {
 
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
+  refs.searchInput.value = '';
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   if (response.data.results.length === 0) {
     refs.searchWarning.style.opacity = 1;
+    setTimeout(removeOpacity, 3000);
     refs.pagination.classList.add('visually-hidden');
+    refs.gallery.style.display = 'flex';
+    refs.gallery.style.justifyContent = 'center';
+    refs.gallery.style.alignItems = 'center';
+    refs.gallery.innerHTML = renderOopsNoResults();
   } else {
     refs.searchWarning.style.opacity = 0;
     refs.pagination.classList.remove('visually-hidden');
-  }
-  
-  renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+    refs.gallery.style.cssText = 'display: grid; ';
+    refs.gallery.style.removeProperty('justify-content');
+    refs.gallery.style.removeProperty('align-items');
 
-  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
-  refs.gallery.innerHTML = createGalleryByQuery;
+    renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+
+    const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
+    refs.gallery.innerHTML = createGalleryByQuery;
+  }
 }
 
 async function loadPagesBySearch() {
@@ -52,7 +61,6 @@ async function loadPagesBySearch() {
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
   
   const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
@@ -63,7 +71,6 @@ function onPaginationClick(event) {
   }
   if (event.target.dataset.btn === 'next') {
     filmApiService.currentPage += 1;
-    // console.log(event.target.parentNode);
   }
   if (event.target.dataset.btn === 'first') {
     filmApiService.currentPage = 1;
@@ -192,4 +199,12 @@ function scrollToTop() {
     top: 0,
     behavior: "smooth"
 });
+}
+
+function addOpacity() {
+  return refs.searchWarning.style.opacity = 1;
+}
+
+function removeOpacity() {
+  return refs.searchWarning.style.opacity = 0;
 }
