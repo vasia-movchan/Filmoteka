@@ -13,8 +13,6 @@ export const refs = {
   emptySearchWarning: document.querySelector('.js-warn'),
 
   // --------- locale storage -------
-  addToWatched: document.querySelector('[data-watched]'),
-  addToQueue: document.querySelector('[data-queue]'),
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
 
