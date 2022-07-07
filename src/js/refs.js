@@ -15,7 +15,7 @@ export const refs = {
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
   animation: document.querySelector('.animate__animated animate__fadeInDown'),
-  
+
   //---- main gallery refs ----
   gallery: document.querySelector('.gallery'),
 
@@ -35,5 +35,6 @@ export const refs = {
   nextBtn: document.querySelector('[data-btn="next"]'),
   pagination: document.querySelector('.pagination'),
 
+  //------spinner refs -----
+  spinner: document.querySelector('.ring'),
 };
-
