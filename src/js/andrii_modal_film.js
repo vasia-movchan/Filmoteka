@@ -1,6 +1,9 @@
 import { renderFilmModal } from "./render_modal_film";
 import FilmApiService from "./filmoteka";
-let BASE_URL = 'https://image.tmdb.org/t/p/w500';
+let BASE_URL = 'https://image.tmdb.org/t/p/';
+const original = 'original'
+const w500 = 'w500'
+const w300 = 'w300'
 
 const refs = {
   modal: document.getElementById("myModal"),
@@ -15,6 +18,7 @@ const filmApiService = new FilmApiService();
 document.addEventListener("DOMContentLoaded", () => {
   if(refs.gallery) {
     refs.gallery.addEventListener('click', openModalFilm)
+    
   }
  
 });
@@ -44,7 +48,32 @@ function openModalFilm (e) {
             
                   <div class="modal-film">
                       <div class="modal-film_poster">
-                      <img class="modal-film__image" src="${BASE_URL}${poster_path}" loading="lazy" alt="movie poster">
+
+                <picture>
+                <source srcset="
+                ${BASE_URL}${original}${poster_path} 1x,
+                ${BASE_URL}${original}${poster_path} 2x
+                " 
+                media="(min-width: 1024px)"
+                >
+                <source srcset="
+                ${BASE_URL}${w500}${poster_path} 1x,
+                ${BASE_URL}${w500}${poster_path} 2x
+                " 
+                media="(min-width: 768px)"
+                >
+                <source srcset="
+                ${BASE_URL}${w300}${poster_path} 1x,
+                ${BASE_URL}${w300}${poster_path} 2x
+                " 
+                >
+              <img src="${original}${poster_path}" 
+              alt=""
+              class="movie-card-img movie-poster"
+              
+              loading="lazy"/>
+
+                     
                       </div>
                 
                     <div class="modal-film_info">
@@ -92,9 +121,7 @@ function openModalFilm (e) {
 
 
 // When the user clicks the button, open the modal 
-refs.btn.onclick = function() {
-  refs.modal.style.display = "block";
-}
+ 
 
 // When the user clicks on <span> (x), close the modal
 // refs.span.onclick = function() {
@@ -108,3 +135,5 @@ window.onclick = function(event) {
     refs.filmModal.innerHTML = "";
   }
 }
+
+ 

@@ -51,7 +51,7 @@
     width: 240px;
     height: 357px;
     border-radius: 5px;
-    background-color: #298e46;
+    background-color: #adbbb1;
     @media screen and(min-width: 768px){
           width: 264px;
           height: 373.55px;
@@ -63,7 +63,23 @@
     }
   }
 
-  .modal-film__image{
+  picture{
+    width: 240px;
+    height: 357px;
+    border-radius: 5px;
+    background-color: #adbbb1;
+    @media screen and(min-width: 768px){
+          width: 264px;
+          height: 373.55px;
+   }
+   @media screen and(min-width: 1280px){
+        width: 375px;
+        height: 478px;
+   
+    }
+  }
+
+  .movie-card-img{
     object-fit: cover;
     width: 240px;
     height: 357px;  
