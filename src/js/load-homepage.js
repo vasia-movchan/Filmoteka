@@ -3,11 +3,10 @@ import { FilmApiService } from "./api-service";
 // import { onPaginationClick, renderPagination } from "./pagination";
 import { renderMovieCard, renderOopsNoResults } from "./render-elements";
 
-
 const filmApiService = new FilmApiService();
 
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
-refs.home.addEventListener('click', loadTrendingMovies);
+refs.home.addEventListener('click', onHomeButtonClick);
 refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 
@@ -19,7 +18,13 @@ async function loadTrendingMovies() {
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
+  refs.gallery.style.display = 'grid';
   refs.gallery.innerHTML = createTrendPage;  
+}
+
+function onHomeButtonClick() {
+  filmApiService.currentPage = 1;
+  loadTrendingMovies()
 }
 
 async function loadMoviesByQuery(event) {
@@ -42,7 +47,7 @@ async function loadMoviesByQuery(event) {
   } else {
     refs.searchWarning.style.opacity = 0;
     refs.pagination.classList.remove('visually-hidden');
-    refs.gallery.style.cssText = 'display: grid; ';
+    refs.gallery.style.cssText = 'display: grid;';
     refs.gallery.style.removeProperty('justify-content');
     refs.gallery.style.removeProperty('align-items');
 
