@@ -1,7 +1,14 @@
-import oopsImage from "../images/gallery/oops.png";
-import noPoster from "../images/gallery/no-poster.png";
+import oopsImage from '../images/gallery/oops.png';
+import noPoster from '../images/gallery/no-poster.png';
 
-export function renderMovieCard({ poster_path, id, title, genres, release_date, vote_average }) {
+export function renderMovieCard({
+  poster_path,
+  id,
+  title,
+  genres,
+  release_date,
+  vote_average,
+}) {
   let BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
   if (poster_path === null) {
@@ -20,25 +27,38 @@ export function renderMovieCard({ poster_path, id, title, genres, release_date, 
         <img id="${id}" class="movie-card__image" src="${BASE_URL}${poster_path}" loading="lazy" alt="movie poster">
         <p id="${id}" class="movie-card__title">${title}</p>
         <div ${id} class="movie-card__wrapper">
-          <p id="${id}" class="movie-card__info">${genres} | ${release_date.slice(0, 4)}</p>
+          <p id="${id}" class="movie-card__info">${genres} | ${release_date.slice(
+    0,
+    4
+  )}</p>
           <div id="${id}" class="movie-card__rating">
             <div id="${id}" class="movie-card__rating-icon" width="14" height="14"></div>
-            <p id="${id}" class="movie-card__rating-number">${vote_average.toFixed(1)}</p>
+            <p id="${id}" class="movie-card__rating-number">${vote_average.toFixed(
+    1
+  )}</p>
           </div>
         </div>
       </a>
-    </li>` 
+    </li>`;
 }
 
 export function renderOopsNoResults() {
   return `<img class="warning__no-results" src="${oopsImage}" alt="oops no results">`;
 }
 
-export function renderFilmModal({ poster_path,original_title,vote_count,vote_average,popularity,overview, genres }) {
+export function renderFilmModal({
+  poster_path,
+  original_title,
+  vote_count,
+  vote_average,
+  popularity,
+  overview,
+  genres,
+}) {
   let BASE_URL = 'https://image.tmdb.org/t/p/';
-  const original = 'original'
-  const w500 = 'w500'
-  const w300 = 'w300'
+  const original = 'original';
+  const w500 = 'w500';
+  const w300 = 'w300';
 
   return `  
       <div class="modal-film">
@@ -96,13 +116,13 @@ export function renderFilmModal({ poster_path,original_title,vote_count,vote_ave
         </div>
 
         <div class="modal-film_button-wrapper">
-            <button type="button" class="modal-film_button">ADD TO WATCHED</button>
-            <button type="button" class="modal-film_button">ADD TO QUEUE</button>
+            <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
+            <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
         </div>
         
     </div>
 
   </div>
 
-  ` 
+  `;
 }

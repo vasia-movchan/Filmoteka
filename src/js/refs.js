@@ -12,10 +12,14 @@ export const refs = {
   searchWarning: document.querySelector('.js-search-res'),
   emptySearchWarning: document.querySelector('.js-warn'),
 
+  // --------- locale storage -------
+  addToWatched: document.querySelector('[data-watched]'),
+  addToQueue: document.querySelector('[data-queue]'),
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
+
   animation: document.querySelector('.animate__animated animate__fadeInDown'),
-  
+
   //---- main gallery refs ----
   gallery: document.querySelector('.gallery'),
 
@@ -34,6 +38,4 @@ export const refs = {
   lastPageBtn: document.querySelector('[data-btn="last"]'),
   nextBtn: document.querySelector('[data-btn="next"]'),
   pagination: document.querySelector('.pagination'),
-
 };
-
