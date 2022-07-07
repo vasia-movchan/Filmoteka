@@ -15,15 +15,15 @@ export function renderMovieCard({ poster_path, id, title, genres, release_date, 
     genres = 'Unknown';
   }
 
-  return `<li class="movie-card" data-card>
+  return `<li id="${id}" class="movie-card" data-card>
       <a id="${id}" class="movie-card__link link" href="#">
-        <img class="movie-card__image" src="${BASE_URL}${poster_path}" loading="lazy" alt="movie poster">
-        <p class="movie-card__title">${title}</p>
-        <div class="movie-card__wrapper">
-          <p class="movie-card__info">${genres} | ${release_date.slice(0, 4)}</p>
-          <div class="movie-card__rating">
-            <div class="movie-card__rating-icon" width="14" height="14"></div>
-            <p class="movie-card__rating-number">${vote_average.toFixed(1)}</p>
+        <img id="${id}" class="movie-card__image" src="${BASE_URL}${poster_path}" loading="lazy" alt="movie poster">
+        <p id="${id}" class="movie-card__title">${title}</p>
+        <div ${id} class="movie-card__wrapper">
+          <p id="${id}" class="movie-card__info">${genres} | ${release_date.slice(0, 4)}</p>
+          <div id="${id}" class="movie-card__rating">
+            <div id="${id}" class="movie-card__rating-icon" width="14" height="14"></div>
+            <p id="${id}" class="movie-card__rating-number">${vote_average.toFixed(1)}</p>
           </div>
         </div>
       </a>

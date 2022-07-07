@@ -6,6 +6,7 @@ import './js/modal-team';
 import * as firebase from "./js/firebase-auth.js"
 
 import './js/top-button';
+import './js/andrii_modal_film';
 /*
  * 1) Создать обьект FilmApiService
  * 2) Создать обьект PagesButton
