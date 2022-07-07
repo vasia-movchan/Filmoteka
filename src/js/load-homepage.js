@@ -25,6 +25,8 @@ async function loadTrendingMovies() {
 function onHomeButtonClick() {
   filmApiService.currentPage = 1;
   refs.pagination.classList.remove('visually-hidden');
+  refs.gallery.style.removeProperty('justify-content');
+  refs.gallery.style.removeProperty('align-items');
   loadTrendingMovies()
 }
 
