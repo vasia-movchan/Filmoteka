@@ -4,8 +4,31 @@ import './js/header';
 import './js/load-homepage';
 import './js/modal-team'; 
 import * as firebase from "./js/firebase-auth.js"
-
 import './js/top-button';
 import './js/andrii_modal_film';
+
  
+ 
+ 
+ 
+ 
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
