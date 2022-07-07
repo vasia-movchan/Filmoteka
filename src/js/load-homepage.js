@@ -24,6 +24,7 @@ async function loadTrendingMovies() {
 
 function onHomeButtonClick() {
   filmApiService.currentPage = 1;
+  refs.pagination.classList.remove('visually-hidden');
   loadTrendingMovies()
 }
 
@@ -34,8 +35,9 @@ async function loadMoviesByQuery(event) {
   filmApiService.searchQuery = event.target.elements.search.value;
   refs.searchInput.value = '';
 
-  if (filmApiService.searchQuery == '') {
+  if (filmApiService.searchQuery === '') {
     onInvalidSearchQuery();
+    return;
   }
 
   const response = await filmApiService.getMoviesByQuery();
@@ -44,18 +46,19 @@ async function loadMoviesByQuery(event) {
 
   if (response.data.results.length === 0) {
     onInvalidSearchQuery();
-  } else {
-    refs.searchWarning.style.opacity = 0;
-    refs.pagination.classList.remove('visually-hidden');
-    refs.gallery.style.cssText = 'display: grid;';
-    refs.gallery.style.removeProperty('justify-content');
-    refs.gallery.style.removeProperty('align-items');
-
-    renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-
-    const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
-    refs.gallery.innerHTML = createGalleryByQuery;
+    return;
   }
+
+  refs.searchWarning.style.opacity = 0;
+  refs.pagination.classList.remove('visually-hidden');
+  refs.gallery.style.cssText = 'display: grid;';
+  refs.gallery.style.removeProperty('justify-content');
+  refs.gallery.style.removeProperty('align-items');
+
+  renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+
+  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
+  refs.gallery.innerHTML = createGalleryByQuery;
 }
 
 async function loadPagesBySearch() {
