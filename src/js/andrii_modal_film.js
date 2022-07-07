@@ -1,5 +1,5 @@
-import { renderFilmModal } from "./render_modal_film";
 import FilmApiService from "./filmoteka";
+
 let BASE_URL = 'https://image.tmdb.org/t/p/';
 const original = 'original'
 const w500 = 'w500'
