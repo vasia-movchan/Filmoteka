@@ -1,7 +1,8 @@
 import { refs } from "./refs";
 import { FilmApiService } from "./api-service";
 // import { onPaginationClick, renderPagination } from "./pagination";
-import { renderMovieCard } from "./render-elements";
+import { renderMovieCard, renderOopsNoResults } from "./render-elements";
+
 
 const filmApiService = new FilmApiService();
 
@@ -32,16 +33,24 @@ async function loadMoviesByQuery(event) {
 
   if (response.data.results.length === 0) {
     refs.searchWarning.style.opacity = 1;
+    setTimeout(removeOpacity, 3000);
     refs.pagination.classList.add('visually-hidden');
+    refs.gallery.style.display = 'flex';
+    refs.gallery.style.justifyContent = 'center';
+    refs.gallery.style.alignItems = 'center';
+    refs.gallery.innerHTML = renderOopsNoResults();
   } else {
     refs.searchWarning.style.opacity = 0;
     refs.pagination.classList.remove('visually-hidden');
-  }
-  
-  renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+    refs.gallery.style.cssText = 'display: grid; ';
+    refs.gallery.style.removeProperty('justify-content');
+    refs.gallery.style.removeProperty('align-items');
 
-  const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
-  refs.gallery.innerHTML = createGalleryByQuery;
+    renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+
+    const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join(''); 
+    refs.gallery.innerHTML = createGalleryByQuery;
+  }
 }
 
 async function loadPagesBySearch() {
@@ -190,4 +199,12 @@ function scrollToTop() {
     top: 0,
     behavior: "smooth"
 });
+}
+
+function addOpacity() {
+  return refs.searchWarning.style.opacity = 1;
+}
+
+function removeOpacity() {
+  return refs.searchWarning.style.opacity = 0;
 }
