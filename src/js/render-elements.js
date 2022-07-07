@@ -35,88 +35,6 @@ export function renderOopsNoResults() {
 }
 
 export function renderFilmModal({ poster_path,original_title,vote_count,vote_average,popularity,overview, genres }) {
-<<<<<<< HEAD
-    let BASE_URL = 'https://image.tmdb.org/t/p/';
-  
-    if (poster_path === null) {
-      BASE_URL = '';
-      poster_path = noPoster;
-    }
-    if (release_date === undefined) {
-      release_date = 'n/a';
-    }
-    if (genres === '') {
-      genres = 'Unknown';
-    }
-  
-    return `  
-    <div class="modal-film">
-    <div class="modal-film_poster">
-
-        <picture>
-        <source srcset="
-        ${BASE_URL}${original}${poster_path} 1x,
-        ${BASE_URL}${original}${poster_path} 2x
-        " 
-        media="(min-width: 1024px)"
-        >
-        <source srcset="
-        ${BASE_URL}${w500}${poster_path} 1x,
-        ${BASE_URL}${w500}${poster_path} 2x
-        " 
-        media="(min-width: 768px)"
-        >
-        <source srcset="
-        ${BASE_URL}${w300}${poster_path} 1x,
-        ${BASE_URL}${w300}${poster_path} 2x
-        " 
-        >
-      <img src="${original}${poster_path}" 
-      alt=""
-      class="movie-card-img movie-poster"
-      
-      loading="lazy"/>
-
-            
-    </div>
-
-  <div class="modal-film_info">
-      <h2 class="modal-film_info-titel">${original_title}</h2>
-
-      <div class="modal-film_list-wrapper">
-      <ul class="modal-film_info-list">
-          <li class="modal-film_info-name">Vote / Votes</li>
-          <li class="modal-film_info-name">Popularity</li>
-          <li class="modal-film_info-name">Original Title</li>
-          <li class="modal-film_info-name">Genre</li>
-      </ul>
-
-      <ul class="modal-film_info-list">
-          <li class="modal-film_info-param">${vote_average} / <span id="modal_rating">${vote_count}</span></li>
-          <li class="modal-film_info-param">${popularity}</li>
-          <li class="modal-film_info-param">${original_title}</li>
-          <li class="modal-film_info-param">${genres[0].name} </li>
-      </ul>
-      </div>
-
-      <div class="modal-film_info-about">
-        <p class="about">About</p>
-        <p class="modal-film_info-description">${overview}</p>
-      </div>
-
-      <div class="modal-film_button-wrapper">
-          <button type="button" class="modal-film_button">ADD TO WATCHED</button>
-          <button type="button" class="modal-film_button">ADD TO QUEUE</button>
-      </div>
-      
-  </div>
-
-</div>
-
-` 
-  }
-
-=======
   let BASE_URL = 'https://image.tmdb.org/t/p/';
   const original = 'original'
   const w500 = 'w500'
@@ -188,4 +106,3 @@ export function renderFilmModal({ poster_path,original_title,vote_count,vote_ave
 
   ` 
 }
->>>>>>> main
