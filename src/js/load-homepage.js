@@ -7,6 +7,7 @@ import { renderMovieCard, renderOopsNoResults } from "./render-elements";
 const filmApiService = new FilmApiService();
 
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
+refs.home.addEventListener('click', loadTrendingMovies);
 refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 
@@ -27,18 +28,17 @@ async function loadMoviesByQuery(event) {
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
   refs.searchInput.value = '';
+
+  if (filmApiService.searchQuery == '') {
+    onInvalidSearchQuery();
+  }
+
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   if (response.data.results.length === 0) {
-    refs.searchWarning.style.opacity = 1;
-    setTimeout(removeOpacity, 3000);
-    refs.pagination.classList.add('visually-hidden');
-    refs.gallery.style.display = 'flex';
-    refs.gallery.style.justifyContent = 'center';
-    refs.gallery.style.alignItems = 'center';
-    refs.gallery.innerHTML = renderOopsNoResults();
+    onInvalidSearchQuery();
   } else {
     refs.searchWarning.style.opacity = 0;
     refs.pagination.classList.remove('visually-hidden');
@@ -207,4 +207,14 @@ function addOpacity() {
 
 function removeOpacity() {
   return refs.searchWarning.style.opacity = 0;
+}
+
+function onInvalidSearchQuery() {
+  refs.searchWarning.style.opacity = 1;
+  setTimeout(removeOpacity, 3000);
+  refs.pagination.classList.add('visually-hidden');
+  refs.gallery.style.display = 'flex';
+  refs.gallery.style.justifyContent = 'center';
+  refs.gallery.style.alignItems = 'center';
+  refs.gallery.innerHTML = renderOopsNoResults();
 }
