@@ -2,8 +2,12 @@ import * as modal_team from './js/modal-team';
 import 'animate.css';
 import './js/header';
 import './js/load-homepage';
+<<<<<<< HEAD
 // import './js/pagination';
 import './js/url';
+=======
+import './js/modal-team'; 
+>>>>>>> main
 import * as firebase from "./js/firebase-auth.js"
 
 import './js/top-button';
