@@ -10,6 +10,7 @@ export const refs = {
   searchInput: document.querySelector('.js-search-input'),
   headerButtons: document.querySelector('.js-buttons'),
   searchWarning: document.querySelector('.js-search-res'),
+  emptySearchWarning: document.querySelector('.js-warn'),
 
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
