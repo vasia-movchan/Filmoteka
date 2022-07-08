@@ -35,11 +35,12 @@ function closeFilmModal(e) {
 
 async function onMovieCardClick(event) {
   event.preventDefault();
+  
   if (!event.target.closest('.movie-card__link')) {
     console.log('Ну туда класцнул');
     return;
   }
- 
+  window.addEventListener('keydown', onKeyPress);
   let movieID = event.target.closest('.movie-card__link').id;
 
   const response = await filmApiService.getMovieByID(movieID);
@@ -153,6 +154,12 @@ async function onMovieCardClick(event) {
   });
 }
 
+
+function onKeyPress(e) {
+  if (e.code === 'Escape') {
+    closeFilmModal();
+  }
+}
 // When the user clicks the button, open the modal
 
 // When the user clicks on <span> (x), close the modal
