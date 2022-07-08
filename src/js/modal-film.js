@@ -1,16 +1,15 @@
 import { renderFilmModal } from './render-elements';
 import { FilmApiService } from './api-service';
-import { addFilmToWatched } from './my-library';
 
 const refs = {
   modal: document.getElementById('myModal'),
   btn: document.getElementById('myBtn'),
   gallery: document.querySelector('.gallery'),
   filmModal: document.querySelector('.modal'),
-  close: document.querySelector('.modal-film_button-close')
+  close: document.querySelector('.modal-film_button-close'),
+  linkMyLibrary: document.querySelector('.js-lib_page'),
   // span: document.getElementsByClassName("close")[0]
 };
-
 
 const filmApiService = new FilmApiService();
 
@@ -35,7 +34,7 @@ function closeFilmModal(e) {
 
 async function onMovieCardClick(event) {
   event.preventDefault();
-  
+
   if (!event.target.closest('.movie-card__link')) {
     console.log('Ну туда класцнул');
     return;
@@ -53,7 +52,7 @@ async function onMovieCardClick(event) {
   const addToQueue = document.querySelector('[data-queue]');
   const closeBtn = document.querySelector('.modal-film_button-close');
 
-  closeBtn.addEventListener('click', closeFilmModal)
+  closeBtn.addEventListener('click', closeFilmModal);
 
   // render text for button WATCHED
   const filmsInWatched = localStorage.getItem('watched');
@@ -83,17 +82,21 @@ async function onMovieCardClick(event) {
 
   // add and remove film in watched locale storage
 
-    addToWatched.addEventListener('click', () => {
+  addToWatched.addEventListener('click', () => {
     const filmIdForLocalStorage = response.data.id;
-    
+
     const watchedInLocalStorage = localStorage.getItem('watched');
 
     if (addToWatched.dataset.watched === 'add') {
       try {
         const arrayWatchedInLocalStorage = JSON.parse(watchedInLocalStorage);
-        const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(elem => elem === filmIdForLocalStorage);
+        const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(
+          elem => elem === filmIdForLocalStorage
+        );
         arrayWatchedInLocalStorage.splice(indexFilmInWatched, 1);
-        const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
+        const updateArrayWatchedInLocalStorage = JSON.stringify(
+          arrayWatchedInLocalStorage
+        );
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'ADD TO WATCHED';
         addToWatched.dataset.watched = '';
@@ -103,11 +106,17 @@ async function onMovieCardClick(event) {
     }
 
     try {
-      const arrayWatchedInLocalStorage = watchedInLocalStorage ? JSON.parse(watchedInLocalStorage) : [];
-      const uniqueID = arrayWatchedInLocalStorage.find(elem => elem === filmIdForLocalStorage);
+      const arrayWatchedInLocalStorage = watchedInLocalStorage
+        ? JSON.parse(watchedInLocalStorage)
+        : [];
+      const uniqueID = arrayWatchedInLocalStorage.find(
+        elem => elem === filmIdForLocalStorage
+      );
       if (!uniqueID) {
         arrayWatchedInLocalStorage.push(filmIdForLocalStorage);
-        const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
+        const updateArrayWatchedInLocalStorage = JSON.stringify(
+          arrayWatchedInLocalStorage
+        );
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'REMOVE FROM WATCHED';
         addToWatched.dataset.watched = 'add';
@@ -127,7 +136,9 @@ async function onMovieCardClick(event) {
     if (addToQueue.dataset.queue === 'add') {
       try {
         const arrayQueueInLocalStorage = JSON.parse(QueueInLocalStorage);
-        const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(elem => elem === filmIdForLocalStorage);
+        const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
+          elem => elem === filmIdForLocalStorage
+        );
         arrayQueueInLocalStorage.splice(indexFilmInQueue, 1);
         const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
         localStorage.setItem('queue', updateArrayQueueInLocalStorage);
@@ -139,8 +150,12 @@ async function onMovieCardClick(event) {
     }
 
     try {
-      const arrayQueueInLocalStorage = QueueInLocalStorage ? JSON.parse(QueueInLocalStorage) : [];
-      const uniqueID = arrayQueueInLocalStorage.find(elem => elem === filmIdForLocalStorage);
+      const arrayQueueInLocalStorage = QueueInLocalStorage
+        ? JSON.parse(QueueInLocalStorage)
+        : [];
+      const uniqueID = arrayQueueInLocalStorage.find(
+        elem => elem === filmIdForLocalStorage
+      );
       if (!uniqueID) {
         arrayQueueInLocalStorage.push(filmIdForLocalStorage);
         const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
@@ -154,7 +169,6 @@ async function onMovieCardClick(event) {
   });
 }
 
-
 function onKeyPress(e) {
   if (e.code === 'Escape') {
     closeFilmModal();
@@ -166,7 +180,6 @@ function onKeyPress(e) {
 // refs.span.onclick = function() {
 //   modal.style.display = "none";
 // }
-
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
