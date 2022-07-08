@@ -83,34 +83,56 @@ export function renderFilmModal({
         <h2 class="modal-film_info-titel">${original_title}</h2>
 
         <div class="modal-film_list-wrapper">
-        <ul class="modal-film_info-list">
-            <li class="modal-film_info-name">Vote / Votes</li>
-            <li class="modal-film_info-name">Popularity</li>
-            <li class="modal-film_info-name">Original Title</li>
-            <li class="modal-film_info-name">Genre</li>
-        </ul>
-
-        <ul class="modal-film_info-list">
-            <li class="modal-film_info-param">${vote_average} / <span id="modal_rating">${vote_count}</span></li>
-            <li class="modal-film_info-param">${popularity}</li>
-            <li class="modal-film_info-param">${original_title}</li>
-            <li class="modal-film_info-param">${genres[0].name} </li>
-        </ul>
+        <table>
+        <tr>
+           <td class="modal-film_name">Vote / Votes</td>
+           <td class="modal-film_parameter"><span id="modal_rating-orange">${vote_average}</span> / <span id="modal_rating-grey">${vote_count}</span></td>
+        </tr>
+        <tr>
+           <td class="modal-film_name">Popularity</td>
+           <td class="modal-film_parameter">${popularity}</td>
+        </tr>
+        <tr>
+           <td class="modal-film_name">Original Title</td>
+           <td class="modal-film_parameter">${original_title}</td>
+        </tr>
+        <tr>
+            <td class="modal-film_name">Genre</td>
+            <td class="modal-film_parameter">${genres[0].name}</td>
+         </tr>
+     </table>
         </div>
 
         <div class="modal-film_info-about">
-          <p class="about">About</p>
+          <p class="about">ABOUT</p>
           <p class="modal-film_info-description">${overview}</p>
         </div>
 
+          
+    </div>
         <div class="modal-film_button-wrapper">
             <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
             <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
-        </div>
-        
-    </div>
-
+         </div>  
   </div>
 
   `;
 }
+
+
+
+
+
+        // <ul class="modal-film_info-list">
+        //     <li class="modal-film_info-name">Vote / Votes</li>
+        //     <li class="modal-film_info-name">Popularity</li>
+        //     <li class="modal-film_info-name">Original Title</li>
+        //     <li class="modal-film_info-name">Genre</li>
+        // </ul>
+
+        // <ul class="modal-film_info-list">
+        //     <li class="modal-film_info-param">${vote_average} / <span id="modal_rating">${vote_count}</span></li>
+        //     <li class="modal-film_info-param">${popularity}</li>
+        //     <li class="modal-film_info-param">${original_title}</li>
+        //     <li class="modal-film_info-param">${genres[0].name} </li>
+        // </ul>
