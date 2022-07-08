@@ -1,11 +1,12 @@
-import { refs } from "./refs";
-import { FilmApiService } from "./api-service";
+import { refs } from './refs';
+import { FilmApiService } from './api-service';
 // import { onPaginationClick, renderPagination } from "./pagination";
-import { renderMovieCard } from "./render-elements";
+import { renderMovieCard, renderOopsNoResults } from './render-elements';
 
 const filmApiService = new FilmApiService();
 
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
+refs.home.addEventListener('click', onHomeButtonClick);
 refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 
@@ -15,9 +16,18 @@ async function loadTrendingMovies() {
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  console.log(filmApiService.currentPage);
+
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
-  refs.gallery.innerHTML = createTrendPage;  
+  refs.gallery.style.display = 'grid';
+  refs.gallery.innerHTML = createTrendPage;
+}
+
+function onHomeButtonClick() {
+  filmApiService.currentPage = 1;
+  refs.pagination.classList.remove('visually-hidden');
+  refs.gallery.style.removeProperty('justify-content');
+  refs.gallery.style.removeProperty('align-items');
+  loadTrendingMovies();
 }
 
 async function loadMoviesByQuery(event) {
@@ -25,22 +35,31 @@ async function loadMoviesByQuery(event) {
 
   filmApiService.currentPage = 1;
   filmApiService.searchQuery = event.target.elements.search.value;
+  refs.searchInput.value = '';
+
+  if (filmApiService.searchQuery === '') {
+    onInvalidSearchQuery();
+    return;
+  }
+
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   if (response.data.results.length === 0) {
-    refs.searchWarning.style.opacity = 1;
-    refs.pagination.classList.add('visually-hidden');
-  } else {
-    refs.searchWarning.style.opacity = 0;
-    refs.pagination.classList.remove('visually-hidden');
+    onInvalidSearchQuery();
+    return;
   }
-  
+
+  refs.searchWarning.style.opacity = 0;
+  refs.pagination.classList.remove('visually-hidden');
+  refs.gallery.style.cssText = 'display: grid;';
+  refs.gallery.style.removeProperty('justify-content');
+  refs.gallery.style.removeProperty('align-items');
+
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
   const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
 
@@ -50,12 +69,10 @@ async function loadPagesBySearch() {
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-  
+
   const createGalleryByQuery = responseWithGenreNames.map(renderMovieCard).join('');
-  
   refs.gallery.innerHTML = createGalleryByQuery;
 }
-
 
 function onPaginationClick(event) {
   if (event.target.dataset.btn === 'prev') {
@@ -63,7 +80,6 @@ function onPaginationClick(event) {
   }
   if (event.target.dataset.btn === 'next') {
     filmApiService.currentPage += 1;
-    // console.log(event.target.parentNode);
   }
   if (event.target.dataset.btn === 'first') {
     filmApiService.currentPage = 1;
@@ -89,12 +105,12 @@ function onPaginationClick(event) {
   // if (event.target.className = 'pagination__item') {
   //   scrollToTop();
   // }
-  
+
   switch (filmApiService.dataType) {
     case 'trending':
       loadTrendingMovies();
       break;
-    
+
     case 'search':
       loadPagesBySearch();
       break;
@@ -148,10 +164,10 @@ function renderPagination(currentPage, totalPages) {
   }
   // -------- Conditions for middle numeric buttons behaviour --------
   if (currentPage === totalPages) {
-    refs.numBtn.forEach((el, index) => el.textContent = totalPages - 5 + index);
+    refs.numBtn.forEach((el, index) => (el.textContent = totalPages - 5 + index));
   }
   if (currentPage === 1) {
-    refs.numBtn.forEach((el, index) => el.textContent = 1 + (index + 1));
+    refs.numBtn.forEach((el, index) => (el.textContent = 1 + (index + 1)));
   }
   if (currentPage > 3 && currentPage < totalPages - 2) {
     refs.btn1.textContent = currentPage - 2;
@@ -180,9 +196,9 @@ function renderPagination(currentPage, totalPages) {
     } else {
       el.classList.remove('pg-active');
     }
-  })
+  });
 
-  if ( currentPage === refs.pageBtn) {
+  if (currentPage === refs.pageBtn) {
     refs.prevBtn.classList.remove('pg-inactive');
   }
 }
@@ -190,6 +206,24 @@ function renderPagination(currentPage, totalPages) {
 function scrollToTop() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth"
-});
+    behavior: 'smooth',
+  });
+}
+
+function addOpacity() {
+  return (refs.searchWarning.style.opacity = 1);
+}
+
+function removeOpacity() {
+  return (refs.searchWarning.style.opacity = 0);
+}
+
+function onInvalidSearchQuery() {
+  refs.searchWarning.style.opacity = 1;
+  setTimeout(removeOpacity, 3000);
+  refs.pagination.classList.add('visually-hidden');
+  refs.gallery.style.display = 'flex';
+  refs.gallery.style.justifyContent = 'center';
+  refs.gallery.style.alignItems = 'center';
+  refs.gallery.innerHTML = renderOopsNoResults();
 }

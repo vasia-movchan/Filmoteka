@@ -49,9 +49,9 @@ export class FilmApiService {
     }
   };
 
-  async getMovieByID() {
+  async getMovieByID(id) {
     try {
-      const response = await axios(`/search/${movieID}`, {
+      const response = await axios(`/movie/${id}`, {
         params: {
           api_key: API_KEY,
         }

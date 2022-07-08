@@ -111,7 +111,7 @@
   height: 12px;
   background-image: url(/src/images/svg/star.svg);
   background-size: contain;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     width: 16px;
     height: 16px;
   }
@@ -124,8 +124,16 @@
   padding: 0 8px;
   border-radius: 5px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     font-size: 16px;
   }
+}
+
+// ----- WARNING IMAGE STYLES ----
+
+.warning__no-results {
+  width: 200px;
+  opacity: 0.7;
+  filter: invert(100%);
 }
 
