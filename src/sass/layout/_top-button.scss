@@ -16,15 +16,21 @@
         width: 45px;
         height: 45px;
     }
+    
+    @media (min-width: 450px) and (max-width: #{$tablet - 1}) {
+        bottom: 160px;
+        }
+
     @media (min-width: $tablet) {
         right: 70px;
         width: 60px;
         height: 60px;
+        bottom: 130px;
     }
     @media (min-width: $desktop) {
         right: 100px;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
 
     &:hover {
