@@ -9,7 +9,8 @@ function myLibrary() {
   console.log(watchedFilms);
 
   if (watchedFilms === null || watchedFilms === '[]') {
-    const libraryIsEmpty = `<p style="padding: 50px; text-align: center; min-height: calc(100vh - 295px);">Your library is empty</p>`;
-    document.querySelector('main').innerHTML = libraryIsEmpty;
+    refs.gallery.style.display = 'block';
+    const libraryIsEmpty = `<li style="text-align: center;">Your library is empty</li>`;
+    refs.gallery.innerHTML = libraryIsEmpty;
   }
 }
