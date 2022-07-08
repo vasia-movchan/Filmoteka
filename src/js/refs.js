@@ -36,4 +36,9 @@ export const refs = {
   lastPageBtn: document.querySelector('[data-btn="last"]'),
   nextBtn: document.querySelector('[data-btn="next"]'),
   pagination: document.querySelector('.pagination'),
-};
+
+
+  //------spinner refs -----
+  spinner: document.querySelector('.ring'),
+
+
