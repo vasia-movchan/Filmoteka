@@ -10,7 +10,7 @@ const filmApiService = new FilmApiService();
 
 function myLibrary() {
   refs.gallery.style.display = 'block';
-  const libraryIsEmpty = `<li style="text-align: center;">Your library is empty</li>`;
+  const libraryIsEmpty = `<li class ="empty-my-library"><p class="title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
   refs.gallery.innerHTML = libraryIsEmpty;
   refs.pagination.classList.add('visually-hidden');
   const queueFilms = localStorage.getItem('queue');
