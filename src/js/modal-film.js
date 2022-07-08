@@ -7,8 +7,10 @@ const refs = {
   btn: document.getElementById('myBtn'),
   gallery: document.querySelector('.gallery'),
   filmModal: document.querySelector('.modal'),
+  close: document.querySelector('.modal-film_button-close')
   // span: document.getElementsByClassName("close")[0]
 };
+
 
 const filmApiService = new FilmApiService();
 
@@ -26,13 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+function closeFilmModal(e) {
+  refs.modal.style.display = 'none';
+  refs.filmModal.innerHTML = '';
+}
+
 async function onMovieCardClick(event) {
   event.preventDefault();
   if (!event.target.closest('.movie-card__link')) {
     console.log('Ну туда класцнул');
     return;
   }
-
+ 
   let movieID = event.target.closest('.movie-card__link').id;
 
   const response = await filmApiService.getMovieByID(movieID);
@@ -43,6 +50,9 @@ async function onMovieCardClick(event) {
   // render text for button
   const addToWatched = document.querySelector('[data-watched]');
   const addToQueue = document.querySelector('[data-queue]');
+  const closeBtn = document.querySelector('.modal-film_button-close');
+
+  closeBtn.addEventListener('click', closeFilmModal)
 
   // render text for button WATCHED
   const filmsInWatched = localStorage.getItem('watched');
@@ -72,9 +82,9 @@ async function onMovieCardClick(event) {
 
   // add and remove film in watched locale storage
 
-  addToWatched.addEventListener('click', () => {
+    addToWatched.addEventListener('click', () => {
     const filmIdForLocalStorage = response.data.id;
-
+    
     const watchedInLocalStorage = localStorage.getItem('watched');
 
     if (addToWatched.dataset.watched === 'add') {
@@ -149,6 +159,7 @@ async function onMovieCardClick(event) {
 // refs.span.onclick = function() {
 //   modal.style.display = "none";
 // }
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {

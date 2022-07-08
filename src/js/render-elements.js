@@ -52,6 +52,12 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
+      <button class="modal-film_button-close">x
+        <svg class="icon">
+            <use href="/src/images/svg/sprite.svg#close"></use>
+        </svg>
+      </button>
+
           <picture>
           <source srcset="
           ${BASE_URL}${original}${poster_path} 1x,
