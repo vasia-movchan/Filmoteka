@@ -1,17 +1,16 @@
 .modal-auth__btn-open {
-    position: fixed;
-    left: 100px;
-    top: 100px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: transparent;
+    position: absolute;
+    right: 27px;
+    top: 80px;    
     font-family: Roboto;
+    color: var(--header-text-color);
+    text-transform: uppercase;
     text-decoration: none;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+    letter-spacing: 1.33px;    
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 0 3px;
 }
 
 .is-hidden-auth {
