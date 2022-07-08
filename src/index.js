@@ -8,3 +8,4 @@ import './js/top-button';
 import './js/spinner';
 import './js/modal-film';
 import './js/my-library';
+import './images/svg/sprite.svg'
