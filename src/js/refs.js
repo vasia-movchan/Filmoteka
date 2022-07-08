@@ -12,8 +12,10 @@ export const refs = {
   searchWarning: document.querySelector('.js-search-res'),
   emptySearchWarning: document.querySelector('.js-warn'),
 
+  // --------- locale storage -------
   watchedLibrary: document.querySelector('.js-btn_watched'),
   queueLibrary: document.querySelector('.js-btn_queue'),
+
   animation: document.querySelector('.animate__animated animate__fadeInDown'),
 
   //---- main gallery refs ----
@@ -35,6 +37,8 @@ export const refs = {
   nextBtn: document.querySelector('[data-btn="next"]'),
   pagination: document.querySelector('.pagination'),
 
+
   //------spinner refs -----
   spinner: document.querySelector('.ring'),
-};
+
+

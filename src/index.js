@@ -7,29 +7,4 @@ import * as firebase from './js/firebase-auth.js';
 import './js/top-button';
 import './js/spinner';
 import './js/modal-film';
-
- 
- 
- 
- 
- 
-
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import './js/my-library';
