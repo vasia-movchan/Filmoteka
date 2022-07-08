@@ -145,6 +145,22 @@
   background-position: center;
   background-size: 30%;
   background-repeat: no-repeat;
+  
+  &:hover{
+     
+    color: #000000;
+    transform: 5px;
+    box-shadow: rgb(151, 76, 25) 5px 2px 10px;
+    .icon{
+        width: 14px;
+        height: 14px;
+        fill: rgb(0, 0, 0);
+     }
+    } 
+
+  &:active{
+    transform: translateY(2px);
+  }
 
   @media (max-width: #{$tablet - 1}) {
     width: 20px;
@@ -157,11 +173,5 @@
     display: inline-block;
     width: 10px;
     height: 10px;
-    fill: black;
-
-    &:hover {
-        width: 14px;
-        height: 14px;
-        }
- 
+    fill: rgb(113, 113, 113);
 }
