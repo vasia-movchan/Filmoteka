@@ -108,8 +108,8 @@ onAuthStateChanged(auth, (user) => {
       btnLogin.classList.add('is-hidden-auth');
       btnLogout.classList.remove('is-hidden-auth');
       title.textContent = `Hello, ${user.email.split('@')[0]}`;
-      btnOpenModal.textContent = "LogOut"
-      btnOpenModal.style.backgroundColor = "green";
+      btnOpenModal.textContent = "LogOut";
+      btnOpenModal.style.borderRight = "3px solid #69ff00";
       console.log('удачно вошли');
     } else {
       uid = null;
@@ -121,6 +121,7 @@ onAuthStateChanged(auth, (user) => {
       console.log('удачно вышли');
       title.textContent = "Login form";
       btnOpenModal.textContent = "Login";
-      btnOpenModal.style.backgroundColor = "red";
+      btnOpenModal.style.borderRight = "3px solid #ff001b";
+
     }
   });
