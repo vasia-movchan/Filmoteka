@@ -8,7 +8,7 @@ export class FilmApiService {
     this.searchQuery = '';
     this.currentPage = 1;
     this.totalPages = '';
-    this.language = 'en-US';
+    this.language = 'uk';
     this.dataType = '';
   }
 
@@ -18,6 +18,7 @@ export class FilmApiService {
         params: {
           api_key: API_KEY,
           page: this.currentPage,
+          language: this.language,
         }
       });
 
@@ -37,6 +38,7 @@ export class FilmApiService {
           api_key: API_KEY,
           query: this.searchQuery,
           page: this.currentPage,
+          language: this.language,
         }
       });
 
@@ -54,6 +56,7 @@ export class FilmApiService {
       const response = await axios(`/movie/${id}`, {
         params: {
           api_key: API_KEY,
+          language: this.language,
         }
       });
 
