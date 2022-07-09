@@ -32,7 +32,7 @@ function onQueueLibrary() {
   const queueFilms = localStorage.getItem('queue');
   if (queueFilms === null || queueFilms === '[]') {
     refs.gallery.style.display = 'block';
-    const libraryIsEmpty = `<li style="text-align: center;">Your queue is empty</li>`;
+    const libraryIsEmpty = `<li class ="empty-my-library"><p class = "title-empty-my-library">Your movie queue is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
     refs.gallery.innerHTML = libraryIsEmpty;
   } else {
     try {
@@ -52,9 +52,9 @@ function onWatchedLibrary() {
   const watchedFilms = localStorage.getItem('watched');
   if (watchedFilms === null || watchedFilms === '[]') {
     refs.gallery.style.display = 'block';
-    const libraryIsEmpty = `<li class ="empty-my-library"><p class = "title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
+    const libraryIsEmpty = `<li class ="empty-my-library"><p class = "title-empty-my-library">Your library of watched movies is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
 
-refs.gallery.innerHTML = libraryIsEmpty;
+    refs.gallery.innerHTML = libraryIsEmpty;
   } else {
     try {
       refs.gallery.style.display = 'grid';
@@ -70,13 +70,21 @@ refs.gallery.innerHTML = libraryIsEmpty;
 
 async function getFilmDataFromApi(id) {
   const response = await filmApiService.getMovieByID(id);
-  //   console.log(response);
   const markup = renderMovieCard(response.data);
   refs.gallery.insertAdjacentHTML('afterbegin', markup);
   const genresInfo = document.querySelector('.movie-card__info');
   const genresCount = response.data.genres.length;
-  //   console.log(genresCount);
-  genresInfo.textContent = `${response.data.genres[0].name}, ${
-    response.data.genres[1].name
-  } | ${response.data.release_date.slice(0, 4)}`;
+  let genresName = [];
+  if (genresCount < 3) {
+    for (let i = 0; i < genresCount; i += 1) {
+      genresName.push(response.data.genres[i].name);
+    }
+  } else {
+    for (let i = 0; i < 2; i += 1) {
+      genresName.push(response.data.genres[i].name);
+    }
+    genresName.push('Other');
+  }
+  const genresList = genresName.join(', ');
+  genresInfo.textContent = `${genresList} | ${response.data.release_date.slice(0, 4)}`;
 }

@@ -7,7 +7,7 @@ export const controlPageHome = function () {
   refs.header.classList.add('header-bg');
   refs.searchForm.classList.remove('visually-hidden');
   refs.headerButtons.classList.add('visually-hidden');
-  refs.watchedLibrary.classList.add('active-btn');
+  refs.watchedLibrary.classList.remove('active-btn');
   refs.queueLibrary.classList.remove('active-btn');
 };
 const controlPageLib = function (e) {
@@ -26,7 +26,7 @@ refs.headerNavigation.addEventListener('click', evt => {
   if (evt.target === refs.linkMyLibrary) {
     controlPageLib();
 
-    refs.watchedLibrary.classList.add('active-btn');
+    refs.watchedLibrary.classList.remove('active-btn');
     refs.queueLibrary.classList.remove('active-btn');
     return;
   } else if (evt.target === refs.linkHome) {
