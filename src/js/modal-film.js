@@ -68,6 +68,7 @@ async function onMovieCardClick(event) {
   } catch (error) {}
 
   // render text for button QUEUE
+
   const filmsInQueue = localStorage.getItem('queue');
   try {
     const arrayfilmInQueue = JSON.parse(filmsInQueue);
@@ -94,9 +95,7 @@ async function onMovieCardClick(event) {
           elem => elem === filmIdForLocalStorage
         );
         arrayWatchedInLocalStorage.splice(indexFilmInWatched, 1);
-        const updateArrayWatchedInLocalStorage = JSON.stringify(
-          arrayWatchedInLocalStorage
-        );
+        const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'ADD TO WATCHED';
         addToWatched.dataset.watched = '';
@@ -109,17 +108,38 @@ async function onMovieCardClick(event) {
       const arrayWatchedInLocalStorage = watchedInLocalStorage
         ? JSON.parse(watchedInLocalStorage)
         : [];
-      const uniqueID = arrayWatchedInLocalStorage.find(
-        elem => elem === filmIdForLocalStorage
-      );
+      const uniqueID = arrayWatchedInLocalStorage.find(elem => elem === filmIdForLocalStorage);
       if (!uniqueID) {
+        // add to watched
+
         arrayWatchedInLocalStorage.push(filmIdForLocalStorage);
-        const updateArrayWatchedInLocalStorage = JSON.stringify(
-          arrayWatchedInLocalStorage
-        );
+        const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'REMOVE FROM WATCHED';
         addToWatched.dataset.watched = 'add';
+
+        // remove from queue
+
+        const queueInLocalStorage = localStorage.getItem('queue');
+
+        try {
+          const arrayQueueInLocalStorage = queueInLocalStorage
+            ? JSON.parse(queueInLocalStorage)
+            : [];
+          const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
+            elem => elem === filmIdForLocalStorage
+          );
+
+          if (indexFilmInQueue >= 0) {
+            arrayQueueInLocalStorage.splice(indexFilmInQueue, 1);
+          }
+          const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
+          localStorage.setItem('queue', updateArrayQueueInLocalStorage);
+          addToQueue.textContent = 'ADD TO QUEUE';
+          addToQueue.dataset.queue = '';
+        } catch (error) {
+          console.log('Parse error');
+        }
       }
     } catch (error) {
       console.log('Parse error');
@@ -131,11 +151,11 @@ async function onMovieCardClick(event) {
   addToQueue.addEventListener('click', () => {
     const filmIdForLocalStorage = response.data.id;
 
-    const QueueInLocalStorage = localStorage.getItem('queue');
+    const queueInLocalStorage = localStorage.getItem('queue');
 
     if (addToQueue.dataset.queue === 'add') {
       try {
-        const arrayQueueInLocalStorage = JSON.parse(QueueInLocalStorage);
+        const arrayQueueInLocalStorage = JSON.parse(queueInLocalStorage);
         const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
           elem => elem === filmIdForLocalStorage
         );
@@ -150,18 +170,40 @@ async function onMovieCardClick(event) {
     }
 
     try {
-      const arrayQueueInLocalStorage = QueueInLocalStorage
-        ? JSON.parse(QueueInLocalStorage)
-        : [];
-      const uniqueID = arrayQueueInLocalStorage.find(
-        elem => elem === filmIdForLocalStorage
-      );
+      const arrayQueueInLocalStorage = queueInLocalStorage ? JSON.parse(queueInLocalStorage) : [];
+      const uniqueID = arrayQueueInLocalStorage.find(elem => elem === filmIdForLocalStorage);
       if (!uniqueID) {
+        // add to queue
+
         arrayQueueInLocalStorage.push(filmIdForLocalStorage);
         const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
         localStorage.setItem('queue', updateArrayQueueInLocalStorage);
         addToQueue.textContent = 'REMOVE FROM QUEUE';
         addToQueue.dataset.queue = 'add';
+
+        // remove from watched
+
+        const watchedInLocalStorage = localStorage.getItem('watched');
+
+        try {
+          const arrayWatchedInLocalStorage = watchedInLocalStorage
+            ? JSON.parse(watchedInLocalStorage)
+            : [];
+
+          const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(
+            elem => elem === filmIdForLocalStorage
+          );
+
+          if (indexFilmInWatched >= 0) {
+            arrayWatchedInLocalStorage.splice(indexFilmInWatched, 1);
+          }
+          const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
+          localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
+          addToWatched.textContent = 'ADD TO WATCHED';
+          addToWatched.dataset.watched = '';
+        } catch (error) {
+          console.log('Parse error');
+        }
       }
     } catch (error) {
       console.log('Parse error');
