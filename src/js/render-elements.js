@@ -1,5 +1,7 @@
 import oopsImage from '../images/gallery/oops.png';
 import noPoster from '../images/gallery/no-poster.png';
+import svg from 'bundle-text:../images/svg/close.svg'
+  
 
 export function renderMovieCard({ poster_path, id, title, genres, release_date, vote_average }) {
   let BASE_URL = 'https://image.tmdb.org/t/p/w500';
@@ -34,6 +36,11 @@ export function renderOopsNoResults() {
   return `<img class="warning__no-results" src="${oopsImage}" alt="oops no results">`;
 }
 
+
+const icon = svg
+ 
+console.log(icon)
+
 export function renderFilmModal({
   poster_path,
   original_title,
@@ -52,10 +59,8 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
-      <button class="modal-film_button-close">x
-        <svg class="icon">
-            <use href="/src/images/svg/sprite.svg#close"></use>
-        </svg>
+      <button class="modal-film_button-close">${icon}
+        
       </button>
 
           <picture>
@@ -129,17 +134,4 @@ export function renderFilmModal({
 
 
 
-
-        // <ul class="modal-film_info-list">
-        //     <li class="modal-film_info-name">Vote / Votes</li>
-        //     <li class="modal-film_info-name">Popularity</li>
-        //     <li class="modal-film_info-name">Original Title</li>
-        //     <li class="modal-film_info-name">Genre</li>
-        // </ul>
-
-        // <ul class="modal-film_info-list">
-        //     <li class="modal-film_info-param">${vote_average} / <span id="modal_rating">${vote_count}</span></li>
-        //     <li class="modal-film_info-param">${popularity}</li>
-        //     <li class="modal-film_info-param">${original_title}</li>
-        //     <li class="modal-film_info-param">${genres[0].name} </li>
-        // </ul>
+ 
