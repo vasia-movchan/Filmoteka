@@ -33,6 +33,23 @@ body.dk-theme {
     color: rgb(255, 145, 0);
   }
 
+  .modal-film {
+    background-color: var(--dk-theme-bg-color);
+    color: var(--lt-theme-bg-color);
+  }
+
+  .modal-film_button-close:hover {
+    color: var(--lt-theme-bg-color);
+  }
+
+  .modal-film_parameter {
+    color: var(--lt-theme-bg-color);
+  }
+
+  // .modal-film_button {
+  //   border: var(--lt-theme-bg-color);
+  // }
+
   .team__modal {
     background-color: #a7a7a78a;
     color: var(--lt-theme-bg-color);
