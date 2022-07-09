@@ -6,6 +6,8 @@ const Theme = {
   DARK: 'dk-theme',
 };
 
+// let THEME = 'current-theme';
+
 const bodyHtml = document.querySelector('body');
 
 function changeTheme(evt) {
@@ -17,3 +19,17 @@ function changeTheme(evt) {
     bodyHtml.classList.toggle(Theme.DARK);
   }
 }
+
+// saveTheme();
+// function saveTheme() {
+//   const saveKey = localStorage.getItem(THEME);
+//   if (!saveKey) {
+//     bodyHtml.classList.add(Theme.LIGHT);
+//     localStorage.setItem(THEME, bodyHtml.classList);
+//   } else {
+//     bodyHtml.classList.add(saveKey);
+//     if (saveKey === Theme.DARK) {
+//       checkbox.checked = true;
+//     }
+//   }
+// }
