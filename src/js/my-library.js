@@ -50,8 +50,9 @@ function onWatchedLibrary() {
   const watchedFilms = localStorage.getItem('watched');
   if (watchedFilms === null || watchedFilms === '[]') {
     refs.gallery.style.display = 'block';
-    const libraryIsEmpty = `<li style="text-align: center;">Your watched is empty</li>`;
-    refs.gallery.innerHTML = libraryIsEmpty;
+    const libraryIsEmpty = `<li class ="empty-my-library"><p class = "title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
+
+refs.gallery.innerHTML = libraryIsEmpty;
   } else {
     try {
       refs.gallery.style.display = 'grid';
