@@ -1,6 +1,10 @@
 .modal-auth__btn-open {
     position: absolute;
-    right: 27px;
+    right: 34px;
+
+    @media screen and (max-width: 768px) {
+      right: 20px;
+    }
     top: 80px;    
     font-family: Roboto;
     color: var(--header-text-color);
@@ -26,7 +30,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0,0,0,0.5); /* цвет фона */
+    background: rgba(0,0,0,0.1); /* цвет фона */
     z-index: 1050;
     opacity: 0; /* по умолчанию модальное окно прозрачно */    
     transition: opacity 200ms ease-in; /* анимация перехода */
@@ -34,7 +38,7 @@
     margin: 0;
     padding: 0;
     font-family: Roboto;
-    background: linear-gradient(#141e30, #243b55);
+    background: linear-gradient(rgba(20, 30, 48, 0.9), rgba(36, 59, 85, 0.9));
     text-align: center;
 }
 
@@ -51,7 +55,7 @@ pointer-events: auto; /* элемент видим для событий мыш�
     width: 290px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
+    background: rgb(43, 58, 75);
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0,0,0,.6);
     border-radius: 10px;
