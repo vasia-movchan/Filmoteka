@@ -14,6 +14,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     border-radius: 5px;
+  
     @media screen and(min-width: 768px){
       padding-top: 219px; /* Location of the box */
       padding-left: 32px;
@@ -42,7 +43,7 @@
     border: 1px solid #888;
     width: 280px;
     border-radius: 5px;
- 
+    
   
     
     @media screen and(min-width: 768px){
@@ -313,26 +314,39 @@
 }
 
 .modal-film_button-close{
+    display: flex;
+    justify-content: flex-start;
     position: absolute;
-    width: 30px;
-    height: 30px;
-    color: #888;
-    font-size: 34px;
-    border: none;
-    background: none;
     right: 12px;
     top: 2px;
+    background-color: #d88e88;
+    border-radius: 50%;
+    border: none;
+    width: 30px;
+    height: 30px;
+    transition:  .25s cubic-bezier(.4,0,.2,1);
 
     &:hover{
+      background-color: #ec3c2c;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      .icon-close{
+        stroke: #000000;
+    }
+      
       color: #000000;
       transform: 5px;
       text-shadow: rgb(151, 76, 25) 5px 2px 10px;
     }
 
     &:active{
-      transform: translateY(2px);
+      transform: translateY(3px);
     }
  
 }
+
+ .icon-close{
+  stroke: #888888;
+    
+ }
 
  
