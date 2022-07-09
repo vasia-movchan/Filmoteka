@@ -36,13 +36,11 @@
     position: relative;
     background-color: #fefefe;
     margin: auto;
-    padding-top: 42px;
+    padding-top: 48px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 46px;
-    border: 1px solid #888;
     width: 280px;
-    border-radius: 5px;
     
   
     
@@ -259,10 +257,6 @@
    }
 }
 
-.modal-film_info-description{
-    @include font(500, 12px, 20px, 1.67, left);
-}
-
 .modal-film_button-wrapper{
   display: flex;
   justify-content: space-between;
@@ -284,13 +278,12 @@
     width: 110px;
     height: 44px;
     background: #FFFFFF;
+    border: 1px solid #000;
     border-radius: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     &:hover{
-        padding-left: 15px;
-        padding-right: 15px;
         background: #FF6B01;
         border-radius: 5px;
         border: #FF6B01;
@@ -299,10 +292,8 @@
     }
     
     &:active {
-      padding-left: 15px;
-      padding-right: 15px;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
-      transform: translateY(2px);
+      transform: scale(.96);
     }    
     @media screen and(min-width: 768px){
         width: 125px;
@@ -328,46 +319,42 @@
 }
 
 
-.modal-film_info-description{
-    @include font(500, 12px, 20px, 1.66, left);
+.modal-film_info-description {
+    @include font(500, 12px, 20px, normal, left);
     margin-top: 8px;
 }
 
-.modal-film_button-close{
+.modal-film_button-close {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    right: 12px;
-    top: 2px;
-    background-color: #d88e88;
-    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    padding: 0;
     border: none;
     width: 30px;
     height: 30px;
- 
 
-    &:hover{
-      background-color: #ec3c2c;
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    &:hover {
       .icon-close{
-        stroke: #000000;
-    }
-      
-      color: #000000;
-      transform: 5px;
-      text-shadow: rgb(151, 76, 25) 5px 2px 10px;
+        stroke: #FF6B01;
+      }
     }
 
-    &:active{
-      transform: translateY(3px);
+    &:active {
+      transform: scale(.96);
     }
  
 }
 
 
 
- .icon-close{
-  stroke: #888888;
+ .close-svg {
+  &:hover {
+    stroke: #FF6B01;
+  }
     
  }
 
