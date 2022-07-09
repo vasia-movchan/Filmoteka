@@ -15,7 +15,10 @@ async function loadTrendingMovies() {
   refs.gallery.style.display = 'grid';
   const response = await filmApiService.getTrendingMovies();
   const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    genres
+  );
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
@@ -54,7 +57,10 @@ async function loadMoviesByQuery(event) {
 
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    genres
+  );
 
   if (response.data.results.length === 0) {
     onInvalidSearchQuery();
@@ -76,7 +82,10 @@ async function loadMoviesByQuery(event) {
 async function loadPagesBySearch() {
   const response = await filmApiService.getMoviesByQuery();
   const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    genres
+  );
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
