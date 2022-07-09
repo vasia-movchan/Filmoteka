@@ -21,7 +21,8 @@
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "firebase": "^9.8.4",
-    "modern-normalize": "^1.1.0"
+    "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.5"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.6.0",
