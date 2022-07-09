@@ -3,7 +3,8 @@
     class="container header__container animate__animated animate__fadeInDown"
   >
     <div class="header__sections">
-        <nav class="site-nav js-site-nav">
+      <!-- ========== NAVIGATION ========== -->
+      <nav class="site-nav js-site-nav">
         <a class="link logo js-logo" href="" lang="en">
           <svg class="logo__icon" width="24" height="24">
             <use href="/src/images/svg/sprite.svg#icon-film"></use>
@@ -26,8 +27,8 @@
           </li>
         </ul>
       </nav>
+      <!-- ========== FORM on HOME_PAGE ========== -->
       <a href class="modal-auth__btn-open"></a>
-
       <form class="search-form js-search-form" id="search-form">
         <input
           type="text"
@@ -42,6 +43,7 @@
           </svg>
         </button>
       </form>
+      <!-- ========== BUTTONS on LIBRARY_PAGE ========== -->
       <div class="buttons js-buttons visually-hidden">
         <button
           class="button_lib btn_watched active-btn js-btn_watched"
@@ -59,8 +61,36 @@
         </button>
       </div>
     </div>
+    <!-- ========== DARK/LIGHT THEME ========== -->
+
+    <div class="switcher">
+      <div class="th-switch">
+        <svg class="th-switch__icon" aria-label="sun-icon">
+          <use href="./images/svg/sprite.svg#icon-sun"></use>
+        </svg>
+        <div class="th-switch__control">
+          <input
+            class="th-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="th-sw-toggle"
+            aria-label="switcher"
+          />
+          <label aria-hidden="true" class="th-switch__track" for="th-sw-toggle">
+          </label>
+          <div aria-hidden="true" class="th-switch__marker"></div>
+        </div>
+        <svg class="th-switch__icon" aria-label="moon-icon">
+          <use href="./images/svg/sprite.svg#icon-moon"></use>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ========== WARNINGS ========== -->
     <div class="js-warn header-warn"></div>
-    <div class="js-search-res header-warn">Search result not successful. Enter the correct movie name</div>
+    <div class="js-search-res header-warn">
+      Search result not successful. Enter the correct movie name
+    </div>
   </div>
 </header>
 
