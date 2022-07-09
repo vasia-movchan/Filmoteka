@@ -8,7 +8,7 @@ export class FilmApiService {
     this.searchQuery = '';
     this.currentPage = 1;
     this.totalPages = '';
-    this.language = 'uk';
+    this.language = 'en';
     this.dataType = '';
   }
 
