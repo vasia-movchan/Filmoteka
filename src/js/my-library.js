@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import { renderMovieCard } from './render-elements';
 import { FilmApiService } from './api-service';
+import { onLogoHomeClick } from './load-homepage';
 
 refs.linkMyLibrary.addEventListener('click', myLibrary);
 refs.watchedLibrary.addEventListener('click', onWatchedLibrary);
@@ -9,6 +10,7 @@ refs.queueLibrary.addEventListener('click', onQueueLibrary);
 const filmApiService = new FilmApiService();
 
 function myLibrary() {
+  refs.logoHome.addEventListener('click', onLogoHomeClick);
   refs.gallery.style.display = 'block';
   const libraryIsEmpty = `<li class ="empty-my-library"><p class="title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
   refs.gallery.innerHTML = libraryIsEmpty;

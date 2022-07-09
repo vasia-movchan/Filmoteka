@@ -6,11 +6,13 @@ import { renderMovieCard, renderOopsNoResults } from './render-elements';
 const filmApiService = new FilmApiService();
 
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
+// refs.logoHome.addEventListener('click', onLogoHomeClick);
 refs.home.addEventListener('click', onHomeButtonClick);
 refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 
 async function loadTrendingMovies() {
+  refs.gallery.style.display = 'grid';
   const response = await filmApiService.getTrendingMovies();
   const genres = await filmApiService.getGenres();
   const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
@@ -18,11 +20,19 @@ async function loadTrendingMovies() {
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
-  refs.gallery.style.display = 'grid';
   refs.gallery.innerHTML = createTrendPage;
 }
 
+export function onLogoHomeClick() {
+  filmApiService.currentPage = 1;
+  refs.pagination.classList.remove('visually-hidden');
+  refs.gallery.style.removeProperty('justify-content');
+  refs.gallery.style.removeProperty('align-items');
+  loadTrendingMovies();
+}
+
 function onHomeButtonClick() {
+  refs.logoHome.removeEventListener('click', onLogoHomeClick);
   filmApiService.currentPage = 1;
   refs.pagination.classList.remove('visually-hidden');
   refs.gallery.style.removeProperty('justify-content');

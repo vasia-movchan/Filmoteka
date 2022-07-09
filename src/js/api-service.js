@@ -81,4 +81,18 @@ export class FilmApiService {
   generateGenresNamesFromID(response, genres) {
     return response.data.results.map(movie => ({ ...movie, genres: movie.genre_ids.map(id => genres.filter(genre => genre.id === id)).flat().map(genre => genre.name).slice(0, 2).join(', ') })); 
   }
+
+  async getTrailerByMvoieID(id) {
+    try {
+      const response = await axios(`/movie/${id}/videos`, {
+        params: {
+          api_key: API_KEY,
+        }
+      });
+
+      return response;
+    } catch (error) {
+    console.log(error);
+    }
+  };
 }
