@@ -64,6 +64,7 @@ async function onMovieCardClick(event) {
     if (filmInWatched) {
       addToWatched.textContent = 'REMOVE FROM WATCHED';
       addToWatched.dataset.watched = 'add';
+      addToWatched.classList.add('modal-film_active-btn');
     }
   } catch (error) {}
 
@@ -78,6 +79,7 @@ async function onMovieCardClick(event) {
     if (filmInQueue) {
       addToQueue.textContent = 'REMOVE FROM QUEUE';
       addToQueue.dataset.queue = 'add';
+      addToQueue.classList.add('modal-film_active-btn');
     }
   } catch (error) {}
 
@@ -99,6 +101,7 @@ async function onMovieCardClick(event) {
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'ADD TO WATCHED';
         addToWatched.dataset.watched = '';
+        addToWatched.classList.remove('modal-film_active-btn');
       } catch (error) {
         console.log('Parse error');
       }
@@ -117,6 +120,7 @@ async function onMovieCardClick(event) {
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'REMOVE FROM WATCHED';
         addToWatched.dataset.watched = 'add';
+        addToWatched.classList.add('modal-film_active-btn');
 
         // remove from queue
 
@@ -137,6 +141,7 @@ async function onMovieCardClick(event) {
           localStorage.setItem('queue', updateArrayQueueInLocalStorage);
           addToQueue.textContent = 'ADD TO QUEUE';
           addToQueue.dataset.queue = '';
+          addToQueue.classList.remove('modal-film_active-btn');
         } catch (error) {
           console.log('Parse error');
         }
@@ -164,6 +169,7 @@ async function onMovieCardClick(event) {
         localStorage.setItem('queue', updateArrayQueueInLocalStorage);
         addToQueue.textContent = 'ADD TO QUEUE';
         addToQueue.dataset.queue = '';
+        addToQueue.classList.remove('modal-film_active-btn');
       } catch (error) {
         console.log('Parse error');
       }
@@ -180,6 +186,7 @@ async function onMovieCardClick(event) {
         localStorage.setItem('queue', updateArrayQueueInLocalStorage);
         addToQueue.textContent = 'REMOVE FROM QUEUE';
         addToQueue.dataset.queue = 'add';
+        addToQueue.classList.add('modal-film_active-btn');
 
         // remove from watched
 
@@ -201,6 +208,7 @@ async function onMovieCardClick(event) {
           localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
           addToWatched.textContent = 'ADD TO WATCHED';
           addToWatched.dataset.watched = '';
+          addToWatched.classList.remove('modal-film_active-btn');
         } catch (error) {
           console.log('Parse error');
         }
