@@ -1,5 +1,8 @@
 import { renderFilmModal } from './render-elements';
 import { FilmApiService } from './api-service';
+import { onWatchedLibrary } from './my-library';
+import { onQueueLibrary } from './my-library';
+import { myLibrary } from './my-library';
 
 const refs = {
   modal: document.getElementById('myModal'),
@@ -8,6 +11,8 @@ const refs = {
   filmModal: document.querySelector('.modal'),
   close: document.querySelector('.modal-film_button-close'),
   linkMyLibrary: document.querySelector('.js-lib_page'),
+  watchedLibrary: document.querySelector('.js-btn_watched'),
+  queueLibrary: document.querySelector('.js-btn_queue'),
   // span: document.getElementsByClassName("close")[0]
 };
 
@@ -92,6 +97,8 @@ async function onMovieCardClick(event) {
 
     if (addToWatched.dataset.watched === 'add') {
       try {
+        // remove from watched
+
         const arrayWatchedInLocalStorage = JSON.parse(watchedInLocalStorage);
         const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(
           elem => elem === filmIdForLocalStorage
@@ -102,6 +109,21 @@ async function onMovieCardClick(event) {
         addToWatched.textContent = 'ADD TO WATCHED';
         addToWatched.dataset.watched = '';
         addToWatched.classList.remove('modal-film_active-btn');
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          refs.watchedLibrary.classList.contains('active-btn')
+        ) {
+          onWatchedLibrary();
+        }
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          !refs.watchedLibrary.classList.contains('active-btn') &&
+          !refs.queueLibrary.classList.contains('active-btn')
+        ) {
+          myLibrary();
+        }
       } catch (error) {
         console.log('Parse error');
       }
@@ -121,6 +143,13 @@ async function onMovieCardClick(event) {
         addToWatched.textContent = 'REMOVE FROM WATCHED';
         addToWatched.dataset.watched = 'add';
         addToWatched.classList.add('modal-film_active-btn');
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          refs.watchedLibrary.classList.contains('active-btn')
+        ) {
+          onWatchedLibrary();
+        }
 
         // remove from queue
 
@@ -142,6 +171,21 @@ async function onMovieCardClick(event) {
           addToQueue.textContent = 'ADD TO QUEUE';
           addToQueue.dataset.queue = '';
           addToQueue.classList.remove('modal-film_active-btn');
+
+          if (
+            refs.linkMyLibrary.classList.contains('current') &&
+            refs.queueLibrary.classList.contains('active-btn')
+          ) {
+            onQueueLibrary();
+          }
+
+          if (
+            refs.linkMyLibrary.classList.contains('current') &&
+            !refs.watchedLibrary.classList.contains('active-btn') &&
+            !refs.queueLibrary.classList.contains('active-btn')
+          ) {
+            myLibrary();
+          }
         } catch (error) {
           console.log('Parse error');
         }
@@ -160,6 +204,8 @@ async function onMovieCardClick(event) {
 
     if (addToQueue.dataset.queue === 'add') {
       try {
+        // remove from queue
+
         const arrayQueueInLocalStorage = JSON.parse(queueInLocalStorage);
         const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
           elem => elem === filmIdForLocalStorage
@@ -170,6 +216,21 @@ async function onMovieCardClick(event) {
         addToQueue.textContent = 'ADD TO QUEUE';
         addToQueue.dataset.queue = '';
         addToQueue.classList.remove('modal-film_active-btn');
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          refs.queueLibrary.classList.contains('active-btn')
+        ) {
+          onQueueLibrary();
+        }
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          !refs.watchedLibrary.classList.contains('active-btn') &&
+          !refs.queueLibrary.classList.contains('active-btn')
+        ) {
+          myLibrary();
+        }
       } catch (error) {
         console.log('Parse error');
       }
@@ -187,6 +248,13 @@ async function onMovieCardClick(event) {
         addToQueue.textContent = 'REMOVE FROM QUEUE';
         addToQueue.dataset.queue = 'add';
         addToQueue.classList.add('modal-film_active-btn');
+
+        if (
+          refs.linkMyLibrary.classList.contains('current') &&
+          refs.queueLibrary.classList.contains('active-btn')
+        ) {
+          onQueueLibrary();
+        }
 
         // remove from watched
 
@@ -209,6 +277,21 @@ async function onMovieCardClick(event) {
           addToWatched.textContent = 'ADD TO WATCHED';
           addToWatched.dataset.watched = '';
           addToWatched.classList.remove('modal-film_active-btn');
+
+          if (
+            refs.linkMyLibrary.classList.contains('current') &&
+            refs.watchedLibrary.classList.contains('active-btn')
+          ) {
+            onWatchedLibrary();
+          }
+
+          if (
+            refs.linkMyLibrary.classList.contains('current') &&
+            !refs.watchedLibrary.classList.contains('active-btn') &&
+            !refs.queueLibrary.classList.contains('active-btn')
+          ) {
+            myLibrary();
+          }
         } catch (error) {
           console.log('Parse error');
         }
