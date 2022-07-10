@@ -27,6 +27,7 @@ async function loadTrendingMovies() {
 }
 
 export function onLogoHomeClick() {
+  refs.logoHome.removeEventListener('click', onLogoHomeClick);
   filmApiService.currentPage = 1;
   refs.pagination.classList.remove('visually-hidden');
   refs.gallery.style.removeProperty('justify-content');
