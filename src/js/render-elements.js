@@ -59,8 +59,8 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
-      <button class="modal-film_button-close">${icon}
-        
+      <button class="modal-film_button-close">
+        ${icon}
       </button>
 
           <picture>
@@ -134,4 +134,7 @@ export function renderFilmModal({
 
 
 
- 
+        // <svg class="close-svg" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        //   <path class="icon-close" d="M8 8L22 22" stroke="black" stroke-width="2"/>
+        //   <path class="icon-close" d="M8 22L22 8" stroke="black" stroke-width="2"/>
+        // </svg>
