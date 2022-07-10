@@ -341,11 +341,13 @@
     &:hover {
       .icon-close{
         stroke: #FF6B01;
+        height: 35px;
+        width: 35px;
       }
     }
 
     &:active {
-      transform: scale(.96);
+      transform: scale(.90) translateY(2px);;
     }
  
 }
