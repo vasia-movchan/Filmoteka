@@ -11,6 +11,8 @@ export const refs = {
   headerButtons: document.querySelector('.js-buttons'),
   searchWarning: document.querySelector('.js-search-res'),
   emptySearchWarning: document.querySelector('.js-warn'),
+  searchSwitcher: document.querySelector('.search-form__switch'),
+  select: document.querySelector('.search-form__external-source'),
 
   // --------- locale storage -------
   watchedLibrary: document.querySelector('.js-btn_watched'),
