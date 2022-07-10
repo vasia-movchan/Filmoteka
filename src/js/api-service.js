@@ -18,6 +18,7 @@ export class FilmApiService {
         params: {
           api_key: API_KEY,
           page: this.currentPage,
+        }
       });
 
       this.totalPages = response.data.total_pages;
@@ -36,6 +37,7 @@ export class FilmApiService {
           api_key: API_KEY,
           query: this.searchQuery,
           page: this.currentPage,
+        }
       });
 
       this.totalPages = response.data.total_pages;
@@ -52,6 +54,7 @@ export class FilmApiService {
       const response = await axios(`/movie/${id}`, {
         params: {
           api_key: API_KEY,
+        }
       });
 
       return response;
