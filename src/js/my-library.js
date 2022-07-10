@@ -9,7 +9,7 @@ refs.queueLibrary.addEventListener('click', onQueueLibrary);
 
 const filmApiService = new FilmApiService();
 
-function myLibrary() {
+export function myLibrary() {
   refs.logoHome.addEventListener('click', onLogoHomeClick);
   refs.gallery.style.display = 'block';
   const libraryIsEmpty = `<li class ="empty-my-library"><p class="title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
@@ -27,7 +27,7 @@ function myLibrary() {
   }
 }
 
-function onQueueLibrary() {
+export function onQueueLibrary() {
   refs.gallery.innerHTML = '';
   const queueFilms = localStorage.getItem('queue');
   if (queueFilms === null || queueFilms === '[]') {
@@ -47,7 +47,7 @@ function onQueueLibrary() {
   }
 }
 
-function onWatchedLibrary() {
+export function onWatchedLibrary() {
   refs.gallery.innerHTML = '';
   const watchedFilms = localStorage.getItem('watched');
   if (watchedFilms === null || watchedFilms === '[]') {
