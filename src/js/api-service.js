@@ -18,7 +18,6 @@ export class FilmApiService {
         params: {
           api_key: API_KEY,
           page: this.currentPage,
-          language: this.language,
         }
       });
 
@@ -27,9 +26,9 @@ export class FilmApiService {
 
       return response;
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
-  };
+  }
 
   async getMoviesByQuery() {
     try {
@@ -38,7 +37,6 @@ export class FilmApiService {
           api_key: API_KEY,
           query: this.searchQuery,
           page: this.currentPage,
-          language: this.language,
         }
       });
 
@@ -47,24 +45,23 @@ export class FilmApiService {
 
       return response;
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
-  };
+  }
 
   async getMovieByID(id) {
     try {
       const response = await axios(`/movie/${id}`, {
         params: {
           api_key: API_KEY,
-          language: this.language,
         }
       });
 
       return response;
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
-  };
+  }
 
   async getGenres() {
     try {
@@ -72,17 +69,25 @@ export class FilmApiService {
         params: {
           api_key: API_KEY,
           language: this.language,
-        }
+        },
       });
 
       return genres.data.genres;
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
   }
 
   generateGenresNamesFromID(response, genres) {
-    return response.data.results.map(movie => ({ ...movie, genres: movie.genre_ids.map(id => genres.filter(genre => genre.id === id)).flat().map(genre => genre.name).slice(0, 2).join(', ') })); 
+    return response.data.results.map(movie => ({
+      ...movie,
+      genres: movie.genre_ids
+        .map(id => genres.filter(genre => genre.id === id))
+        .flat()
+        .map(genre => genre.name)
+        .slice(0, 2)
+        .join(', '),
+    }));
   }
 
   async getTrailerByMvoieID(id) {
@@ -90,12 +95,26 @@ export class FilmApiService {
       const response = await axios(`/movie/${id}/videos`, {
         params: {
           api_key: API_KEY,
-        }
+        },
       });
 
       return response;
     } catch (error) {
-    console.log(error);
+      console.log(error);
     }
-  };
+  }
+
+  async getMovieByExternalID(external_id, external_source) {
+    try {
+      const response = await axios(`/find/${external_id}`, {
+        params: {
+          api_key: API_KEY,
+          external_source,
+        },
+      });
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
