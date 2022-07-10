@@ -22,7 +22,8 @@ export function createTrailerModal(key) {
 }
 
 export async function showTrailer(e) {
-    let movieID = e.target.id;
+    // let movieID = e.target.closest('.trailer-button"').id;
+    let movieID = e.currentTarget .id;
     const response = await filmApiService.getTrailerByMvoieID(movieID);
     const trailer = response.data.results.filter(el => el.name = 'Official Trailer')
     let filmKey = trailer[0].key

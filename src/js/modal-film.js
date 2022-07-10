@@ -45,8 +45,7 @@ async function onMovieCardClick(event) {
   const addToWatched = document.querySelector('[data-watched]');
   const addToQueue = document.querySelector('[data-queue]');
   const closeBtn = document.querySelector('.modal-film_button-close');
-
-
+   
   trailer.addEventListener('click', showTrailer)
   closeBtn.addEventListener('click', closeFilmModal);
 

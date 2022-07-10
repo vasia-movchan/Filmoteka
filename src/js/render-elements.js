@@ -1,6 +1,7 @@
 import oopsImage from '../images/gallery/oops.png';
 import noPoster from '../images/gallery/no-poster.png';
 import svg from 'bundle-text:../images/svg/close.svg'
+import filmIcon from 'bundle-text:../images/svg/film.svg'
   
 
 export function renderMovieCard({ poster_path, id, title, genres, release_date, vote_average }) {
@@ -123,7 +124,9 @@ export function renderFilmModal({
             <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
             <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
         </div>  
-        <button type="button" class="trailer trailer-button" id="${id}">TRAILER</button> 
+        <button type="button" class="trailer trailer-button" id="${id}">
+               ${filmIcon}  
+        </button> 
     </div>
       
   </div>
