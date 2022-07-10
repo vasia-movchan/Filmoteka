@@ -37,9 +37,8 @@ export function renderOopsNoResults() {
 }
 
 
-const icon = svg
  
-console.log(icon)
+ 
 
 export function renderFilmModal({
   poster_path,
@@ -49,6 +48,7 @@ export function renderFilmModal({
   popularity,
   overview,
   genres,
+  id
 }) {
   let BASE_URL = 'https://image.tmdb.org/t/p/';
   const original = 'original';
@@ -60,7 +60,7 @@ export function renderFilmModal({
       <div class="modal-film_poster">
 
       <button class="modal-film_button-close">
-        ${icon}
+        ${svg}
       </button>
 
           <picture>
@@ -123,7 +123,7 @@ export function renderFilmModal({
             <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
             <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
         </div>  
-          
+        <button type="button" class="trailer trailer-button" id="${id}">TRAILER</button> 
     </div>
       
   </div>

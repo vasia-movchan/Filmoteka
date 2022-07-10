@@ -1,25 +1,10 @@
 import { renderFilmModal } from './render-elements';
 import { FilmApiService } from './api-service';
-
-const refs = {
-  modal: document.getElementById('myModal'),
-  btn: document.getElementById('myBtn'),
-  gallery: document.querySelector('.gallery'),
-  filmModal: document.querySelector('.modal'),
-  close: document.querySelector('.modal-film_button-close'),
-  linkMyLibrary: document.querySelector('.js-lib_page'),
-  // span: document.getElementsByClassName("close")[0]
-};
-
+import { showTrailer } from './trailer'
+import { refs } from './refs';
+ 
 const filmApiService = new FilmApiService();
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   if(refs.gallery) {
-//     refs.gallery.addEventListener('click', openModalFilm)
-
-//   }
-
-// });
+ 
 
 document.addEventListener('DOMContentLoaded', () => {
   if (refs.gallery) {
@@ -27,16 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function closeFilmModal(e) {
+function closeFilmModal() {
   refs.modal.style.display = 'none';
   refs.filmModal.innerHTML = '';
 }
+
+
 
 async function onMovieCardClick(event) {
   event.preventDefault();
 
   if (!event.target.closest('.movie-card__link')) {
-    console.log('Ну туда класцнул');
+     
     return;
   }
   window.addEventListener('keydown', onKeyPress);
@@ -46,12 +33,15 @@ async function onMovieCardClick(event) {
   const markup = renderFilmModal(response.data);
   refs.filmModal.insertAdjacentHTML('afterbegin', markup);
   refs.modal.style.display = 'block';
-
+  
   // render text for button
+  const trailer = document.querySelector('.trailer')
   const addToWatched = document.querySelector('[data-watched]');
   const addToQueue = document.querySelector('[data-queue]');
   const closeBtn = document.querySelector('.modal-film_button-close');
 
+
+  trailer.addEventListener('click', showTrailer)
   closeBtn.addEventListener('click', closeFilmModal);
 
   // render text for button WATCHED
@@ -224,17 +214,13 @@ function onKeyPress(e) {
     closeFilmModal();
   }
 }
-// When the user clicks the button, open the modal
-
-// When the user clicks on <span> (x), close the modal
-// refs.span.onclick = function() {
-//   modal.style.display = "none";
-// }
-
+ 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == refs.modal) {
+window.addEventListener('click', onClickClose)
+
+function onClickClose(e) {
+  if (e.target == refs.modal) {
     refs.modal.style.display = 'none';
     refs.filmModal.innerHTML = '';
   }
-};
+}
