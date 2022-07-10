@@ -1,4 +1,5 @@
 export const refs = {
+  body: document.querySelector('.lt-theme'),
   //---- header refs ----
   header: document.querySelector('.js-header'),
   headerNavigation: document.querySelector('.js-site-nav'),
@@ -39,4 +40,13 @@ export const refs = {
 
   //------spinner refs -----
   spinner: document.querySelector('.ring'),
+
+  //-----other refs-----//
+  body: document.querySelector('.lt-theme'),
+  modal: document.getElementById('myModal'),
+  btn: document.getElementById('myBtn'),
+  gallery: document.querySelector('.gallery'),
+  filmModal: document.querySelector('.modal'),
+  close: document.querySelector('.modal-film_button-close'),
+  linkMyLibrary: document.querySelector('.js-lib_page'),
 };
