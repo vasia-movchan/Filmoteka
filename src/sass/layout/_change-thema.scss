@@ -32,6 +32,10 @@ body.dk-theme {
   .footer__link {
     background-color: var(--footer-primary-text-color);
     color: rgb(255, 145, 0);
+
+    &:hover {
+        font-weight: bold;
+      }
   }
 
   .modal-film {
