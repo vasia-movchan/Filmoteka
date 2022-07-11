@@ -236,3 +236,26 @@ pointer-events: auto; /* элемент видим для событий мыш�
     text-decoration: none;
     cursor: pointer;
 }
+
+.modal-auth__info {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.modal-auth__forgot {
+  color: grey;
+  font-size: 14px;
+  text-align: right;
+  text-decoration: none;
+  display: block;
+  transition: color 250ms linear;
+    &:hover, &:focus {
+      color: $modal-button-color;
+    }
+}
+
+a.is-hidden-auth {
+  display: none;
+}
