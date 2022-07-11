@@ -38,7 +38,7 @@ export function onQueueLibrary() {
     try {
       refs.gallery.style.display = 'grid';
       const arrayQueueFilms = JSON.parse(queueFilms);
-      const response = arrayQueueFilms.map(id => getFilmDataFromApi(id));
+      arrayQueueFilms.map(film => getFilmDataFromLocalStorage(film));
     } catch (error) {
       refs.gallery.style.display = 'block';
       const parseError = `<li style="text-align: center;">Failed to load library queue movies</li>`;
@@ -59,7 +59,8 @@ export function onWatchedLibrary() {
     try {
       refs.gallery.style.display = 'grid';
       const arrayWatchedFilms = JSON.parse(watchedFilms);
-      const response = arrayWatchedFilms.map(id => getFilmDataFromApi(id));
+
+      arrayWatchedFilms.map(film => getFilmDataFromLocalStorage(film));
     } catch (error) {
       refs.gallery.style.display = 'block';
       const parseError = `<li style="text-align: center;">Failed to load library watched movies</li>`;
@@ -68,23 +69,46 @@ export function onWatchedLibrary() {
   }
 }
 
-async function getFilmDataFromApi(id) {
-  const response = await filmApiService.getMovieByID(id);
-  const markup = renderMovieCard(response.data);
+// async function getFilmDataFromApi(id) {
+//   const response = await filmApiService.getMovieByID(id);
+//   const markup = renderMovieCard(response.data);
+//   refs.gallery.insertAdjacentHTML('afterbegin', markup);
+//   const genresInfo = document.querySelector('.movie-card__info');
+//   const genresCount = response.data.genres.length;
+//   let genresName = [];
+//   if (genresCount < 3) {
+//     for (let i = 0; i < genresCount; i += 1) {
+//       genresName.push(response.data.genres[i].name);
+//     }
+//   } else {
+//     for (let i = 0; i < 2; i += 1) {
+//       genresName.push(response.data.genres[i].name);
+//     }
+//     genresName.push('Other');
+//   }
+//   const genresList = genresName.join(', ');
+//   genresInfo.textContent = `${genresList} | ${response.data.release_date.slice(0, 4)}`;
+// }
+
+function getFilmDataFromLocalStorage(film) {
+  const filmData = localStorage.getItem('watched');
+
+  const markup = renderMovieCard(film);
   refs.gallery.insertAdjacentHTML('afterbegin', markup);
   const genresInfo = document.querySelector('.movie-card__info');
-  const genresCount = response.data.genres.length;
+  const genresCount = film.genres.length;
+
   let genresName = [];
   if (genresCount < 3) {
     for (let i = 0; i < genresCount; i += 1) {
-      genresName.push(response.data.genres[i].name);
+      genresName.push(film.genres[i].name);
     }
   } else {
     for (let i = 0; i < 2; i += 1) {
-      genresName.push(response.data.genres[i].name);
+      genresName.push(film.genres[i].name);
     }
     genresName.push('Other');
   }
   const genresList = genresName.join(', ');
-  genresInfo.textContent = `${genresList} | ${response.data.release_date.slice(0, 4)}`;
+  genresInfo.textContent = `${genresList} | ${film.release_date.slice(0, 4)}`;
 }

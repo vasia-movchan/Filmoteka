@@ -1,16 +1,12 @@
 import { renderFilmModal } from './render-elements';
 import { FilmApiService } from './api-service';
-import { showTrailer } from './trailer'
+import { showTrailer } from './trailer';
 import { refs } from './refs';
 import { onWatchedLibrary } from './my-library';
 import { onQueueLibrary } from './my-library';
 import { myLibrary } from './my-library';
 
- 
-
- 
 const filmApiService = new FilmApiService();
- 
 
 document.addEventListener('DOMContentLoaded', () => {
   if (refs.gallery) {
@@ -23,13 +19,10 @@ function closeFilmModal() {
   refs.filmModal.innerHTML = '';
 }
 
-
-
 async function onMovieCardClick(event) {
   event.preventDefault();
 
   if (!event.target.closest('.movie-card__link')) {
-     
     return;
   }
   window.addEventListener('keydown', onKeyPress);
@@ -39,22 +32,23 @@ async function onMovieCardClick(event) {
   const markup = renderFilmModal(response.data);
   refs.filmModal.insertAdjacentHTML('afterbegin', markup);
   refs.modal.style.display = 'block';
-  
+
   // render text for button
-  const trailer = document.querySelector('.trailer')
+  const trailer = document.querySelector('.trailer');
   const addToWatched = document.querySelector('[data-watched]');
   const addToQueue = document.querySelector('[data-queue]');
   const closeBtn = document.querySelector('.modal-film_button-close');
-   
-  trailer.addEventListener('click', showTrailer)
+
+  trailer.addEventListener('click', showTrailer);
   closeBtn.addEventListener('click', closeFilmModal);
 
   // render text for button WATCHED
   const filmsInWatched = localStorage.getItem('watched');
+
   try {
     const arrayfilmInWatched = JSON.parse(filmsInWatched);
     const filmIdInWatched = response.data.id;
-    const filmInWatched = arrayfilmInWatched.find(elem => elem === filmIdInWatched);
+    const filmInWatched = arrayfilmInWatched.find(elem => elem.id === filmIdInWatched);
 
     if (filmInWatched) {
       addToWatched.textContent = 'REMOVE FROM WATCHED';
@@ -69,7 +63,7 @@ async function onMovieCardClick(event) {
   try {
     const arrayfilmInQueue = JSON.parse(filmsInQueue);
     const filmIdInQueue = response.data.id;
-    const filmInQueue = arrayfilmInQueue.find(elem => elem === filmIdInQueue);
+    const filmInQueue = arrayfilmInQueue.find(elem => elem.id === filmIdInQueue);
 
     if (filmInQueue) {
       addToQueue.textContent = 'REMOVE FROM QUEUE';
@@ -82,6 +76,7 @@ async function onMovieCardClick(event) {
 
   addToWatched.addEventListener('click', () => {
     const filmIdForLocalStorage = response.data.id;
+    const filmDataForLocalStorage = response.data;
 
     const watchedInLocalStorage = localStorage.getItem('watched');
 
@@ -91,7 +86,7 @@ async function onMovieCardClick(event) {
 
         const arrayWatchedInLocalStorage = JSON.parse(watchedInLocalStorage);
         const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(
-          elem => elem === filmIdForLocalStorage
+          elem => elem.id === filmIdForLocalStorage
         );
         arrayWatchedInLocalStorage.splice(indexFilmInWatched, 1);
         const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
@@ -123,11 +118,11 @@ async function onMovieCardClick(event) {
       const arrayWatchedInLocalStorage = watchedInLocalStorage
         ? JSON.parse(watchedInLocalStorage)
         : [];
-      const uniqueID = arrayWatchedInLocalStorage.find(elem => elem === filmIdForLocalStorage);
+      const uniqueID = arrayWatchedInLocalStorage.find(elem => elem.id === filmIdForLocalStorage);
       if (!uniqueID) {
         // add to watched
 
-        arrayWatchedInLocalStorage.push(filmIdForLocalStorage);
+        arrayWatchedInLocalStorage.push(filmDataForLocalStorage);
         const updateArrayWatchedInLocalStorage = JSON.stringify(arrayWatchedInLocalStorage);
         localStorage.setItem('watched', updateArrayWatchedInLocalStorage);
         addToWatched.textContent = 'REMOVE FROM WATCHED';
@@ -150,7 +145,7 @@ async function onMovieCardClick(event) {
             ? JSON.parse(queueInLocalStorage)
             : [];
           const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
-            elem => elem === filmIdForLocalStorage
+            elem => elem.id === filmIdForLocalStorage
           );
 
           if (indexFilmInQueue >= 0) {
@@ -189,6 +184,7 @@ async function onMovieCardClick(event) {
 
   addToQueue.addEventListener('click', () => {
     const filmIdForLocalStorage = response.data.id;
+    const filmDataForLocalStorage = response.data;
 
     const queueInLocalStorage = localStorage.getItem('queue');
 
@@ -198,7 +194,7 @@ async function onMovieCardClick(event) {
 
         const arrayQueueInLocalStorage = JSON.parse(queueInLocalStorage);
         const indexFilmInQueue = arrayQueueInLocalStorage.findIndex(
-          elem => elem === filmIdForLocalStorage
+          elem => elem.id === filmIdForLocalStorage
         );
         arrayQueueInLocalStorage.splice(indexFilmInQueue, 1);
         const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
@@ -228,11 +224,11 @@ async function onMovieCardClick(event) {
 
     try {
       const arrayQueueInLocalStorage = queueInLocalStorage ? JSON.parse(queueInLocalStorage) : [];
-      const uniqueID = arrayQueueInLocalStorage.find(elem => elem === filmIdForLocalStorage);
+      const uniqueID = arrayQueueInLocalStorage.find(elem => elem.id === filmIdForLocalStorage);
       if (!uniqueID) {
         // add to queue
 
-        arrayQueueInLocalStorage.push(filmIdForLocalStorage);
+        arrayQueueInLocalStorage.push(filmDataForLocalStorage);
         const updateArrayQueueInLocalStorage = JSON.stringify(arrayQueueInLocalStorage);
         localStorage.setItem('queue', updateArrayQueueInLocalStorage);
         addToQueue.textContent = 'REMOVE FROM QUEUE';
@@ -256,7 +252,7 @@ async function onMovieCardClick(event) {
             : [];
 
           const indexFilmInWatched = arrayWatchedInLocalStorage.findIndex(
-            elem => elem === filmIdForLocalStorage
+            elem => elem.id === filmIdForLocalStorage
           );
 
           if (indexFilmInWatched >= 0) {
@@ -297,9 +293,9 @@ function onKeyPress(e) {
     closeFilmModal();
   }
 }
- 
+
 // When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', onClickClose)
+window.addEventListener('click', onClickClose);
 
 function onClickClose(e) {
   if (e.target == refs.modal) {
