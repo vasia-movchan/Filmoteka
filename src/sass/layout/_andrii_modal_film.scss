@@ -60,12 +60,22 @@
         padding-right: 12px;
         
     }
-   
   }
-
- 
 
   .modal-film_poster{
+    height: 357px;
+    border-radius: 5px;
+    background-color: #adbbb1;
+    @media screen and(min-width: 768px){
+          height: 373px;
+   }
+   @media screen and(min-width: 1280px){
+        height: 478px;
+   
+    }
+  }
+
+/*   picture{
     width: 240px;
     height: 357px;
     border-radius: 5px;
@@ -79,41 +89,12 @@
         height: 478px;
    
     }
-  }
+  } */
 
-  picture{
-    width: 240px;
-    height: 357px;
-    border-radius: 5px;
-    background-color: #adbbb1;
-    @media screen and(min-width: 768px){
-          width: 264px;
-          height: 373.55px;
-   }
-   @media screen and(min-width: 1280px){
-        width: 375px;
-        height: 478px;
-   
-    }
-  }
-
-  .movie-card-img{
-    object-fit: cover;
-    width: 240px;
-    height: 357px;  
-    
-    display: block;
-    border-radius: 5px;
-    @media screen and(min-width: 768px){
-      width: 264px;
-      height: 373px;
-  }
-  @media screen and(min-width: 1280px){
-    width: 375px;
-    height: 478px;
-  }
-  
-    
+  .movie-card-img {  
+    height: 100%;
+    width: 100%;
+    object-fit: cover;    
 }
 
   .modal-film_info{
@@ -121,10 +102,12 @@
     @media screen and(min-width: 768px){
         margin-left: 68px;
         margin-top: 0;
+        max-width: 264px;
     }
     @media screen and(min-width: 1280px){
         margin-left: 16px;
         margin-top: 0;
+        max-width: 396px;
     }
   }
 
