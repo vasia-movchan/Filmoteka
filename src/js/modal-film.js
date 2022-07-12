@@ -6,6 +6,8 @@ import { onWatchedLibrary, onQueueLibrary, myLibrary, clearGallery } from './my-
 
 const filmApiService = new FilmApiService();
 
+const scrollBtn = document.querySelector(".scrollBtn");
+
 document.addEventListener('DOMContentLoaded', () => {
   if (refs.gallery) {
     refs.gallery.addEventListener('click', onMovieCardClick);
@@ -19,6 +21,8 @@ function closeFilmModal() {
 
 async function onMovieCardClick(event) {
   event.preventDefault();
+
+  scrollBtn.classList.remove("showBtn");
 
   if (!event.target.closest('.movie-card__link')) {
     return;
