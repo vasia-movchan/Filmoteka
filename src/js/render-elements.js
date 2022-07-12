@@ -42,9 +42,6 @@ export function renderOopsNoResults() {
 }
 
 
- 
- 
-
 export function renderFilmModal({
   poster_path,
   original_title,
@@ -57,12 +54,14 @@ export function renderFilmModal({
 }) {
   let BASE_URL = 'https://image.tmdb.org/t/p/';
   let original = 'original';
-  const w500 = 'w500';
-  const w300 = 'w300';
+  let w500 = 'w500';
+  let w300 = 'w300';
 
-   if (poster_path === null) {
-       BASE_URL = '';
-   original = '';
+    if (poster_path === null) {
+    BASE_URL = '';
+    original = '';
+    w300 = '';
+    w500 = '';
     poster_path = noPoster;
   }
 
@@ -77,7 +76,7 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
-     
+
 
           <picture>
           <source srcset="
@@ -103,7 +102,7 @@ export function renderFilmModal({
         
         loading="lazy"/>
 <button type="button" class="trailer trailer-button" id="${id}">
-               ${filmIcon}  
+              ${filmIcon}  
         </button> 
               
       </div>
@@ -143,7 +142,7 @@ export function renderFilmModal({
         </div>  
         
     </div>
-     <button class="modal-film_button-close">
+      <button class="modal-film_button-close">
         ${svg}
       </button>
       
