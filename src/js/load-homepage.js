@@ -14,7 +14,9 @@ refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchSwitcher.addEventListener('change', onSearchSwitcher);
 
-filmApiService.getGenres().then(response => localStorage.setItem('genres', JSON.stringify(response)));
+filmApiService
+  .getGenres()
+  .then(response => localStorage.setItem('genres', JSON.stringify(response)));
 
 function onSearchSwitcher(e) {
   if (e.target.checked) {
@@ -79,7 +81,10 @@ async function loadTrendingMovies() {
   spinner.on();
   refs.gallery.style.display = 'grid';
   const response = await filmApiService.getTrendingMovies();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    filmApiService.genres
+  );
 
   // console.log(responseWithGenreNames);
 
@@ -88,6 +93,7 @@ async function loadTrendingMovies() {
   const createTrendPage = responseWithGenreNames.map(renderMovieCard).join('');
   spinner.off();
   refs.gallery.innerHTML = createTrendPage;
+  refs.gallery.classList.add('animate__animated', 'animate__fadeIn');
 }
 
 export function onLogoHomeClick() {
@@ -123,7 +129,10 @@ async function loadMoviesByQuery(event) {
   }
 
   const response = await filmApiService.getMoviesByQuery();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    filmApiService.genres
+  );
 
   if (response.data.results.length === 0) {
     spinner.off();
@@ -147,7 +156,10 @@ async function loadMoviesByQuery(event) {
 async function loadPagesBySearch() {
   spinner.on();
   const response = await filmApiService.getMoviesByQuery();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(
+    response,
+    filmApiService.genres
+  );
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
