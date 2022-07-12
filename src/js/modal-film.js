@@ -2,9 +2,7 @@ import { renderFilmModal } from './render-elements';
 import { FilmApiService } from './api-service';
 import { showTrailer } from './trailer';
 import { refs } from './refs';
-import { onWatchedLibrary } from './my-library';
-import { onQueueLibrary } from './my-library';
-import { myLibrary } from './my-library';
+import { onWatchedLibrary, onQueueLibrary, myLibrary, clearGallery } from './my-library';
 
 const filmApiService = new FilmApiService();
 
@@ -100,6 +98,7 @@ async function onMovieCardClick(event) {
           refs.linkMyLibrary.classList.contains('current') &&
           refs.watchedLibrary.classList.contains('active-btn')
         ) {
+          clearGallery();
           onWatchedLibrary();
         }
 
@@ -134,6 +133,7 @@ async function onMovieCardClick(event) {
           refs.linkMyLibrary.classList.contains('current') &&
           refs.watchedLibrary.classList.contains('active-btn')
         ) {
+          clearGallery();
           onWatchedLibrary();
         }
 
@@ -162,6 +162,7 @@ async function onMovieCardClick(event) {
             refs.linkMyLibrary.classList.contains('current') &&
             refs.queueLibrary.classList.contains('active-btn')
           ) {
+            clearGallery();
             onQueueLibrary();
           }
 
@@ -208,6 +209,7 @@ async function onMovieCardClick(event) {
           refs.linkMyLibrary.classList.contains('current') &&
           refs.queueLibrary.classList.contains('active-btn')
         ) {
+          clearGallery();
           onQueueLibrary();
         }
 
@@ -240,6 +242,7 @@ async function onMovieCardClick(event) {
           refs.linkMyLibrary.classList.contains('current') &&
           refs.queueLibrary.classList.contains('active-btn')
         ) {
+          clearGallery();
           onQueueLibrary();
         }
 
@@ -269,6 +272,7 @@ async function onMovieCardClick(event) {
             refs.linkMyLibrary.classList.contains('current') &&
             refs.watchedLibrary.classList.contains('active-btn')
           ) {
+            clearGallery();
             onWatchedLibrary();
           }
 

@@ -4,30 +4,42 @@ import { FilmApiService } from './api-service';
 import { onLogoHomeClick } from './load-homepage';
 
 refs.linkMyLibrary.addEventListener('click', myLibrary);
+refs.watchedLibrary.addEventListener('click', clearGallery);
 refs.watchedLibrary.addEventListener('click', onWatchedLibrary);
+refs.queueLibrary.addEventListener('click', clearGallery);
 refs.queueLibrary.addEventListener('click', onQueueLibrary);
 
 const filmApiService = new FilmApiService();
 
 export function myLibrary() {
-  refs.gallery.style.display = 'block';
-  const libraryIsEmpty = `<li class ="empty-my-library"><p class="title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
-  refs.gallery.innerHTML = libraryIsEmpty;
+  clearGallery();
   refs.pagination.classList.add('visually-hidden');
   const queueFilms = localStorage.getItem('queue');
   const watchedFilms = localStorage.getItem('watched');
+  const queueEmpty = queueFilms === null || queueFilms === '[]';
+  const watchedEmpty = watchedFilms === null || watchedFilms === '[]';
 
-  if (!(queueFilms === null || queueFilms === '[]')) {
+  if (queueEmpty && watchedEmpty) {
+    refs.gallery.style.display = 'block';
+    const libraryIsEmpty = `<li class ="empty-my-library"><p class="title-empty-my-library">Your library is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
+    refs.gallery.innerHTML = libraryIsEmpty;
+  }
+
+  if (!queueEmpty) {
     onQueueLibrary();
   }
 
-  if (!(watchedFilms === null || watchedFilms === '[]')) {
+  if (!watchedEmpty) {
     onWatchedLibrary();
   }
 }
 
-export function onQueueLibrary() {
+export function clearGallery() {
   refs.gallery.innerHTML = '';
+}
+
+export function onQueueLibrary() {
+  // refs.gallery.innerHTML = '';
   const queueFilms = localStorage.getItem('queue');
   if (queueFilms === null || queueFilms === '[]') {
     refs.gallery.style.display = 'block';
@@ -47,12 +59,11 @@ export function onQueueLibrary() {
 }
 
 export function onWatchedLibrary() {
-  refs.gallery.innerHTML = '';
+  // refs.gallery.innerHTML = '';
   const watchedFilms = localStorage.getItem('watched');
   if (watchedFilms === null || watchedFilms === '[]') {
     refs.gallery.style.display = 'block';
     const libraryIsEmpty = `<li class ="empty-my-library"><p class = "title-empty-my-library">Your library of watched movies is empty</p><img class="icon-empty-my-library" src="https://img.freepik.com/free-photo/rows-red-seats-theater_53876-64711.jpg" alt ="not films here"></img></li>`;
-
     refs.gallery.innerHTML = libraryIsEmpty;
   } else {
     try {
@@ -90,8 +101,6 @@ export function onWatchedLibrary() {
 // }
 
 function getFilmDataFromLocalStorage(film) {
-  const filmData = localStorage.getItem('watched');
-
   const markup = renderMovieCard(film);
   refs.gallery.insertAdjacentHTML('afterbegin', markup);
   const genresInfo = document.querySelector('.movie-card__info');

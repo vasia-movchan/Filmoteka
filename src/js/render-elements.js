@@ -42,9 +42,6 @@ export function renderOopsNoResults() {
 }
 
 
- 
- 
-
 export function renderFilmModal({
   poster_path,
   original_title,
@@ -60,13 +57,14 @@ export function renderFilmModal({
   let w500 = 'w500';
   let w300 = 'w300';
 
-  if (poster_path === null) {
+    if (poster_path === null) {
     BASE_URL = '';
     original = '';
     w300 = '';
     w500 = '';
     poster_path = noPoster;
   }
+
   // if (release_date === undefined) {
   //   release_date = 'n/a';
   // }
@@ -78,9 +76,7 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
-      <button class="modal-film_button-close">
-        ${svg}
-      </button>
+
 
           <picture>
           <source srcset="
@@ -105,7 +101,9 @@ export function renderFilmModal({
         class="movie-card-img movie-poster"
         
         loading="lazy"/>
-
+<button type="button" class="trailer trailer-button" id="${id}">
+              ${filmIcon}  
+        </button> 
               
       </div>
 
@@ -142,10 +140,11 @@ export function renderFilmModal({
             <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
             <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
         </div>  
-        <button type="button" class="trailer trailer-button" id="${id}">
-               ${filmIcon}  
-        </button> 
+        
     </div>
+      <button class="modal-film_button-close">
+        ${svg}
+      </button>
       
   </div>
 
