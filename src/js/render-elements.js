@@ -56,7 +56,7 @@ export function renderFilmModal({
   id
 }) {
   let BASE_URL = 'https://image.tmdb.org/t/p/';
-  const original = 'original';
+  let original = 'original';
   const w500 = 'w500';
   const w300 = 'w300';
 
@@ -75,9 +75,7 @@ export function renderFilmModal({
       <div class="modal-film">
       <div class="modal-film_poster">
 
-      <button class="modal-film_button-close">
-        ${svg}
-      </button>
+     
 
           <picture>
           <source srcset="
@@ -102,7 +100,9 @@ export function renderFilmModal({
         class="movie-card-img movie-poster"
         
         loading="lazy"/>
-
+<button type="button" class="trailer trailer-button" id="${id}">
+               ${filmIcon}  
+        </button> 
               
       </div>
 
@@ -139,10 +139,11 @@ export function renderFilmModal({
             <button type="button" class="modal-film_button" data-watched>ADD TO WATCHED</button>
             <button type="button" class="modal-film_button" data-queue>ADD TO QUEUE</button>
         </div>  
-        <button type="button" class="trailer trailer-button" id="${id}">
-               ${filmIcon}  
-        </button> 
+        
     </div>
+     <button class="modal-film_button-close">
+        ${svg}
+      </button>
       
   </div>
 

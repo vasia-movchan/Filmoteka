@@ -62,39 +62,87 @@
     }
   }
 
-  .modal-film_poster{
+/*   Второй вариант */
+
+.modal-film_poster{
+  position: relative;
+  width: 240px;
     height: 357px;
     border-radius: 5px;
     background-color: #adbbb1;
     @media screen and(min-width: 768px){
           height: 373px;
+          width: 264px;
    }
    @media screen and(min-width: 1280px){
         height: 478px;
+        width: 335px; 
    
     }
   }
 
-/*   picture{
-    width: 240px;
-    height: 357px;
-    border-radius: 5px;
-    background-color: #adbbb1;
-    @media screen and(min-width: 768px){
-          width: 264px;
-          height: 373.55px;
-   }
-   @media screen and(min-width: 1280px){
-        width: 375px;
+/*     .modal-film_poster {
+      position: relative;
+      width: 240px;
+      height: 357px;
+      border-radius: 5px;
+  
+      @media screen and(min-width: 768px) {
+        height: 373px;
+        width: 264px;
+      }
+  
+      @media screen and(min-width: 1280px) {
         height: 478px;
-   
-    }
-  } */
+        width: 375px;
+      }
+    } */
 
-  .movie-card-img {  
-    height: 100%;
-    width: 100%;
-    object-fit: cover;    
+/*         .movie-card-img {
+          display: block;
+          width: auto;
+          margin-right: auto;
+          margin-left: auto;
+          height: 100%;
+          object-fit: center;
+          border-radius: 5px;
+        }
+ */
+                
+/*  Таня стили */
+ .trailer-button {
+                    position: absolute;
+                     top: 0;
+                     left: 0;
+
+                      @media (min-width: $tablet) {
+                          transform: translate(0);
+                        }
+
+      
+                      background: rgba(222, 217, 217, 0.5);
+                      border-radius: 5px;
+                      border: none;
+                      font-size: 16px;
+                      padding: 12px 24px;
+                      border: none;
+                      cursor: pointer;
+                      &:hover {
+                      
+                          .film-svg_path {
+                            fill: $modal-button-color;
+                          }
+                        }
+        
+                }
+
+/*   Второй вариант */
+
+.movie-card-img {  
+    display: block;
+      height: auto;
+      width: 100%;
+      border-radius: 5px;
 }
 
   .modal-film_info{
@@ -308,7 +356,43 @@
 }
 
 .modal-film_button-close {
-    display: flex;
+    position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      margin: 0;
+      border: none;
+      border-radius: 50%;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+      background-position: center;
+      background-size: 30%;
+      background-repeat: no-repeat;
+    
+      &:hover {
+          .icon-close {
+            stroke: #FF6B01;
+            height: 35px;
+            width: 35px;
+          }
+        }
+      
+        &:active {
+          transform: scale(.90) translateY(2px);
+          ;
+        }
+    /* 
+      @media (max-width: #{$tablet - 1}) {
+        width: 20px;
+        height: 20px;
+      } */
+   /*  display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -331,7 +415,7 @@
 
     &:active {
       transform: scale(.90) translateY(2px);;
-    }
+    } */
  
 }
 
