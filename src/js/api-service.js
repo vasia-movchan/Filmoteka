@@ -10,6 +10,7 @@ export class FilmApiService {
     this.totalPages = '';
     this.language = 'en';
     this.dataType = '';
+    this.genres = JSON.parse(localStorage.getItem('genres'));;
   }
 
   async getTrendingMovies() {
@@ -78,16 +79,24 @@ export class FilmApiService {
     }
   }
 
+  // async setGenres() {
+  //   const genres = await this.getGenres();
+    
+  //   return genres;
+  // }
+
   generateGenresNamesFromID(response, genres) {
-    return response.data.results.map(movie => ({
+    const movieList = response.data.results.map(movie => ({
       ...movie,
       genres: movie.genre_ids
         .map(id => genres.filter(genre => genre.id === id))
         .flat()
         .map(genre => genre.name)
-        .slice(0, 2)
-        .join(', '),
+        // .slice(0, 2)
+        // .join(', '),
     }));
+
+    return movieList;
   }
 
   async getTrailerByMvoieID(id) {
