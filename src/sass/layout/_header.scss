@@ -173,22 +173,21 @@
   .search-form__field:focus ~ & {
     color: var(--hero-secondary-text-color);
   }
-  
+
   @include mob {
-    top:30px;
+    top: 30px;
   }
 
   @media screen and (min-width: 768px) {
-    right: 185px;
+    right: 163px;
     top: 0;
   }
 
   @media screen and (min-width: 1280px) {
-    right: 412px;
+    right: 392px;
     top: 0;
   }
 }
-
 
 //===========Search switcher ========//
 
@@ -206,14 +205,12 @@
 
   @include tab {
     transform: scale(0.8);
-      left: 0;
+    left: 0;
   }
 
   @include desk {
     transform: scale(1);
   }
-
-
 }
 
 /* Hide default HTML checkbox */
@@ -232,31 +229,31 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 17px;
   width: 17px;
   left: 3px;
   bottom: 2px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.search-form__switch input:checked+.slider {
+.search-form__switch input:checked + .slider {
   background-color: var(--search-switcher-active-color);
 }
 
-.search-form__switch input:focus+.slider {
+.search-form__switch input:focus + .slider {
   box-shadow: 0 0 1px var(--search-switcher-active-color);
 }
 
-.search-form__switch input:checked+.slider:before {
+.search-form__switch input:checked + .slider:before {
   -webkit-transform: translateX(17px);
   -ms-transform: translateX(17px);
   transform: translateX(17px);
@@ -279,7 +276,6 @@
   border: none;
   outline: none;
 
-
   @include mob {
     transform: scale(0.7);
     bottom: 30px;
@@ -289,36 +285,32 @@
   @include tab {
     transform: scale(0.8);
     bottom: 10px;
-    right: 60px;;
+    right: 60px;
   }
 
   @include desk {
     transform: scale(1);
     right: 275px;
-    bottom: 10px; 
-    
+    bottom: 10px;
   }
 
-.search-form__external-source--option  {
-  background-color: rgba(255, 255, 255, 0.4);
-   
-  color: var(--hero-primary-text-color);
+  .search-form__external-source--option {
+    background-color: rgba(255, 255, 255, 0.4);
 
-  @include mob {
-   font-size: 12px;
+    color: var(--hero-primary-text-color);
+
+    @include mob {
+      font-size: 12px;
+    }
+
+    @include tab {
+      font-size: 13px;
+    }
+
+    @include desk {
+      font-size: 15px;
+    }
   }
-
-  @include tab {
-    font-size: 13px;
-  }
-
-  @include desk {
-    font-size: 15px;
-  }
-
-}
-
-
 }
 
 // ========== WARNINGS ========== //
@@ -391,10 +383,7 @@
       (-webkit-min-device-pixel-ratio: 2),
       screen and (min-resolution: 192dpi),
       screen and (min-resolution: 2dppx) {
-      background-image: linear-gradient(
-          rgba(0, 0, 0, 0.56),
-          rgba(0, 0, 0, 0.56)
-        ),
+      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
         url(../images/header_mylib/lib-2x-desk.jpg);
     }
     height: 216px;
