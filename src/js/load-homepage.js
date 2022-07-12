@@ -6,12 +6,15 @@ import Spinner from './spinner';
 
 const filmApiService = new FilmApiService();
 const spinner = new Spinner(refs.spinner);
+
 document.addEventListener('DOMContentLoaded', loadTrendingMovies);
-// refs.logoHome.addEventListener('click', onLogoHomeClick);
+refs.logoHome.addEventListener('click', onLogoHomeClick);
 refs.home.addEventListener('click', onHomeButtonClick);
-// refs.searchForm.addEventListener('submit', loadMoviesByQuery);
+refs.searchForm.addEventListener('submit', loadMoviesByQuery);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchSwitcher.addEventListener('change', onSearchSwitcher);
+
+filmApiService.getGenres().then(response => localStorage.setItem('genres', JSON.stringify(response)));
 
 function onSearchSwitcher(e) {
   if (e.target.checked) {
@@ -76,8 +79,9 @@ async function loadTrendingMovies() {
   spinner.on();
   refs.gallery.style.display = 'grid';
   const response = await filmApiService.getTrendingMovies();
-  const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
+
+  // console.log(responseWithGenreNames);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 
@@ -87,7 +91,7 @@ async function loadTrendingMovies() {
 }
 
 export function onLogoHomeClick() {
-  refs.logoHome.removeEventListener('click', onLogoHomeClick);
+  // refs.logoHome.removeEventListener('click', onLogoHomeClick);
   filmApiService.currentPage = 1;
   refs.pagination.classList.remove('visually-hidden');
   refs.gallery.style.removeProperty('justify-content');
@@ -96,7 +100,7 @@ export function onLogoHomeClick() {
 }
 
 function onHomeButtonClick() {
-  refs.logoHome.removeEventListener('click', onLogoHomeClick);
+  // refs.logoHome.removeEventListener('click', onLogoHomeClick);
   filmApiService.currentPage = 1;
   refs.pagination.classList.remove('visually-hidden');
   refs.gallery.style.removeProperty('justify-content');
@@ -119,8 +123,7 @@ async function loadMoviesByQuery(event) {
   }
 
   const response = await filmApiService.getMoviesByQuery();
-  const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
 
   if (response.data.results.length === 0) {
     spinner.off();
@@ -144,8 +147,7 @@ async function loadMoviesByQuery(event) {
 async function loadPagesBySearch() {
   spinner.on();
   const response = await filmApiService.getMoviesByQuery();
-  const genres = await filmApiService.getGenres();
-  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, genres);
+  const responseWithGenreNames = filmApiService.generateGenresNamesFromID(response, filmApiService.genres);
 
   renderPagination(filmApiService.currentPage, filmApiService.totalPages);
 

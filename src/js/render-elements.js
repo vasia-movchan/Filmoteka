@@ -15,7 +15,11 @@ export function renderMovieCard({ poster_path, id, title, genres, release_date, 
     release_date = 'n/a';
   }
   if (genres === '') {
-    genres = 'Unknown';
+    genres = 'Genre is not defined';
+  }
+  if (genres.length > 2) {
+    const other = ['Other'];
+    genres = genres.slice(0, 2).concat(other);
   }
 
   return `<li id="${id}" class="movie-card" data-card>
@@ -23,7 +27,7 @@ export function renderMovieCard({ poster_path, id, title, genres, release_date, 
         <img id="${id}" class="movie-card__image" src="${BASE_URL}${poster_path}" loading="lazy" alt="movie poster">
         <p id="${id}" class="movie-card__title">${title}</p>
         <div ${id} class="movie-card__wrapper">
-          <p id="${id}" class="movie-card__info">${genres} | ${release_date.slice(0, 4)}</p>
+          <p id="${id}" class="movie-card__info">${genres.join(', ')} | ${release_date.slice(0, 4)}</p>
           <div id="${id}" class="movie-card__rating">
             <div id="${id}" class="movie-card__rating-icon" width="14" height="14"></div>
             <p id="${id}" class="movie-card__rating-number">${vote_average.toFixed(1)}</p>
@@ -56,10 +60,15 @@ export function renderFilmModal({
   const w500 = 'w500';
   const w300 = 'w300';
 
-    if (poster_path === null) {
-       BASE_URL = '';
-   original = '';
+  if (poster_path === null) {
+    BASE_URL = '';
     poster_path = noPoster;
+  }
+  // if (release_date === undefined) {
+  //   release_date = 'n/a';
+  // }
+  if (genres === '') {
+    genres = 'Genre is not defined';
   }
 
   return `  
@@ -116,7 +125,7 @@ export function renderFilmModal({
             </tr>
             <tr>
                 <td class="modal-film_name">Genre</td>
-                <td class="modal-film_parameter">${genres[0].name}</td>
+                <td class="modal-film_parameter">${genres.map(genre => genre.name).join(', ')}</td>
             </tr>
             </table>
         </div>
