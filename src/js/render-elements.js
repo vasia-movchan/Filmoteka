@@ -56,12 +56,15 @@ export function renderFilmModal({
   id
 }) {
   let BASE_URL = 'https://image.tmdb.org/t/p/';
-  const original = 'original';
-  const w500 = 'w500';
-  const w300 = 'w300';
+  let original = 'original';
+  let w500 = 'w500';
+  let w300 = 'w300';
 
   if (poster_path === null) {
     BASE_URL = '';
+    original = '';
+    w300 = '';
+    w500 = '';
     poster_path = noPoster;
   }
   // if (release_date === undefined) {

@@ -29,6 +29,7 @@ async function onMovieCardClick(event) {
   let movieID = event.target.closest('.movie-card__link').id;
 
   const response = await filmApiService.getMovieByID(movieID);
+  console.log(response);
   const markup = renderFilmModal(response.data);
   refs.filmModal.insertAdjacentHTML('afterbegin', markup);
   refs.modal.style.display = 'block';
