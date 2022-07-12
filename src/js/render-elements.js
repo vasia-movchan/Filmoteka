@@ -60,10 +60,12 @@ export function renderFilmModal({
   const w500 = 'w500';
   const w300 = 'w300';
 
-  if (poster_path === null) {
-    BASE_URL = '';
+   if (poster_path === null) {
+       BASE_URL = '';
+   original = '';
     poster_path = noPoster;
   }
+
   // if (release_date === undefined) {
   //   release_date = 'n/a';
   // }
