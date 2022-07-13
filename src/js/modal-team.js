@@ -1,7 +1,8 @@
 const refs = {
     openModal: document.querySelector('.footer__link'),
     closeModalBtn: document.querySelector('[data-close-modal]'),
-    backdrop: document.querySelector('.backdrop'),
+  backdrop: document.querySelector('.backdrop'),
+    scrollBtn: document.querySelector(".scrollBtn"),
 }
 
 refs.openModal.addEventListener('click', openLink);
@@ -9,10 +10,12 @@ refs.closeModalBtn.addEventListener('click', closeModal);
 refs.backdrop.addEventListener('click', onBackdropClick);
 
 function openLink(e) {
-    e.preventDefault();
+  e.preventDefault();
+  refs.scrollBtn.classList.remove("showBtn");
     window.addEventListener('keydown', onKeyPress);
     refs.backdrop.classList.remove('is-hidden');
-    document.body.classList.add('modal-open');
+  document.body.classList.add('modal-open');
+
 };
 
 

@@ -34,8 +34,8 @@ body.dk-theme {
     color: rgb(255, 145, 0);
 
     &:hover {
-        font-weight: bold;
-      }
+      font-weight: bold;
+    }
   }
 
   .modal-film {
@@ -43,8 +43,8 @@ body.dk-theme {
     color: var(--lt-theme-bg-color);
   }
 
-  .modal-film_button-close:hover {
-    color: var(--lt-theme-bg-color);
+  .icon-close {
+    stroke: var(--lt-theme-bg-color);
   }
 
   .modal-film_parameter {
@@ -74,8 +74,17 @@ body.dk-theme {
     fill: #ffffff;
   }
 
+    .sociallinks__icon:hover,
+    .sociallinks__icon:focus {
+      fill: $modal-button-color;
+    }
+
   .team__position {
     color: var(--header-text-color);
+  }
+
+  .icon {
+    fill: var(--lt-theme-bg-color);
   }
 
   .movie-card__title {

@@ -109,6 +109,10 @@
 
 .team__member {
     margin-right: 4px;
+
+    @media (min-width: $tablet) and (max-width: #{$desktop - 1}) {
+            font-size: 16px;
+        }
 }
 
 .sociallinks__icon {

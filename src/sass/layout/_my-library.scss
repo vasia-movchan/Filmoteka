@@ -21,4 +21,8 @@
     height: 70px;
     background: rgba(47, 48, 58, 0.8);
     color: #fff;
+
+    @media (max-width: #{$tablet - 1}) {
+        font-size: 14px;
+    }
 }

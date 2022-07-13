@@ -6,6 +6,8 @@ import { onWatchedLibrary, onQueueLibrary, myLibrary, clearGallery } from './my-
 
 const filmApiService = new FilmApiService();
 
+const scrollBtn = document.querySelector('.scrollBtn');
+
 document.addEventListener('DOMContentLoaded', () => {
   if (refs.gallery) {
     refs.gallery.addEventListener('click', onMovieCardClick);
@@ -15,10 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 function closeFilmModal() {
   refs.modal.style.display = 'none';
   refs.filmModal.innerHTML = '';
+  document.body.style.overflow = 'auto';
 }
 
 async function onMovieCardClick(event) {
   event.preventDefault();
+
+  scrollBtn.classList.remove('showBtn');
+  document.body.style.overflow = 'hidden';
 
   if (!event.target.closest('.movie-card__link')) {
     return;
@@ -31,6 +37,12 @@ async function onMovieCardClick(event) {
   const markup = renderFilmModal(response.data);
   refs.filmModal.insertAdjacentHTML('afterbegin', markup);
   refs.modal.style.display = 'block';
+  refs.modal.classList.add('animate__animated', 'animate__fadeIn');
+  refs.modal.style.setProperty('--animate-duration', '0.5s');
+  refs.modal.addEventListener('animationend', () => {
+    refs.modal.classList.remove('animate__animated', 'animate__fadeIn');
+    refs.modal.style.removeProperty('--animate-duration', '0.5s');
+  });
 
   // render text for button
   const trailer = document.querySelector('.trailer');
@@ -306,5 +318,6 @@ function onClickClose(e) {
   if (e.target == refs.modal) {
     refs.modal.style.display = 'none';
     refs.filmModal.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
 }
