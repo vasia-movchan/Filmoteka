@@ -63,11 +63,6 @@ async function onGetMovieByExternalId(e) {
   refs.gallery.style.cssText = 'display: grid;';
   refs.gallery.style.removeProperty('justify-content');
   refs.gallery.style.removeProperty('align-items');
-<<<<<<< HEAD
-
-  // renderPagination(filmApiService.currentPage, filmApiService.totalPages);
-=======
->>>>>>> main
   spinner.off();
   refs.gallery.innerHTML = createExternalSearchPage;
 }
