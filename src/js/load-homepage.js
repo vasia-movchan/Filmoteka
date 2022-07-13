@@ -94,6 +94,9 @@ async function loadTrendingMovies() {
   spinner.off();
   refs.gallery.innerHTML = createTrendPage;
   refs.gallery.classList.add('animate__animated', 'animate__fadeIn');
+  refs.gallery.addEventListener('animationend', () => {
+    refs.gallery.classList.remove('animate__animated', 'animate__fadeIn');
+  });
 }
 
 export function onLogoHomeClick() {
