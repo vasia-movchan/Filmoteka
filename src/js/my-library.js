@@ -1,15 +1,63 @@
 import { refs } from './refs';
 import { renderMovieCard } from './render-elements';
 import { FilmApiService } from './api-service';
+// login - mylib
+import { initializeApp } from "firebase/app";
+import { onAuthStateChanged } from "firebase/auth";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// login - mylib
+
 import { onLogoHomeClick } from './load-homepage';
 
-refs.linkMyLibrary.addEventListener('click', myLibrary);
+// refs.linkMyLibrary.addEventListener('click', myLibrary);
 refs.watchedLibrary.addEventListener('click', clearGallery);
 refs.watchedLibrary.addEventListener('click', onWatchedLibrary);
 refs.queueLibrary.addEventListener('click', clearGallery);
 refs.queueLibrary.addEventListener('click', onQueueLibrary);
 
 const filmApiService = new FilmApiService();
+
+// login - mylib
+const firebaseConfig = {
+  apiKey: "AIzaSyC5kyNHcD6sVFejBN9Z00vsOl4bmbW5BXk",
+  authDomain: "filmoteka-teamprojectjs-team6.firebaseapp.com",
+  projectId: "filmoteka-teamprojectjs-team6",
+  storageBucket: "filmoteka-teamprojectjs-team6.appspot.com",
+  messagingSenderId: "421066568411",
+  appId: "1:421066568411:web:c3a2298e24d20ece64d2fe"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    uid = user.uid;
+    refs.linkMyLibrary.addEventListener('click', myLibrary);
+    refs.linkMyLibrary.removeEventListener('click', MyLibraryNoLogin);
+
+  
+  } else {
+    uid = null;
+
+    refs.linkMyLibrary.removeEventListener('click', myLibrary);
+    refs.linkMyLibrary.addEventListener('click', MyLibraryNoLogin);
+
+
+
+
+  }
+});
+
+export function MyLibraryNoLogin () {
+  Notify.warning("To access the library - please authorize");
+}
+
+
+
+// login - mylib
+
 
 export function myLibrary() {
   clearGallery();
