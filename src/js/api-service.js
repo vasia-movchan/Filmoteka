@@ -92,8 +92,18 @@ export class FilmApiService {
         .map(id => genres.filter(genre => genre.id === id))
         .flat()
         .map(genre => genre.name)
-        // .slice(0, 2)
-        // .join(', '),
+    }));
+
+    return movieList;
+  }
+
+  getGenresNamesFromID(response, genres) {
+    const movieList = response.data.movie_results.map(movie => ({
+      ...movie,
+      genres: movie.genre_ids
+        .map(id => genres.filter(genre => genre.id === id))
+        .flat()
+        .map(genre => genre.name)
     }));
 
     return movieList;

@@ -46,8 +46,9 @@ async function onGetMovieByExternalId(e) {
   filmApiService.getMovieByExternalID(external_id, external_source);
   spinner.on();
   const searchResult = await filmApiService.getMovieByExternalID(external_id, external_source);
+  const searchResultWithGenreNames = filmApiService.getGenresNamesFromID(searchResult, filmApiService.genres);
   spinner.off();
-  const createExternalSearchPage = searchResult.data.movie_results.map(renderMovieCard).join('');
+  const createExternalSearchPage = searchResultWithGenreNames.map(renderMovieCard).join('');
   console.log(searchResult);
   if (searchResult.data.movie_results.length === 0) {
     spinner.off();
@@ -56,12 +57,12 @@ async function onGetMovieByExternalId(e) {
   }
 
   refs.searchWarning.style.opacity = 0;
-  refs.pagination.classList.remove('visually-hidden');
+  refs.pagination.classList.add('visually-hidden');
   refs.gallery.style.cssText = 'display: grid;';
   refs.gallery.style.removeProperty('justify-content');
   refs.gallery.style.removeProperty('align-items');
 
-  renderPagination(filmApiService.currentPage, filmApiService.totalPages);
+  // renderPagination(filmApiService.currentPage, filmApiService.totalPages);
   spinner.off();
   refs.gallery.innerHTML = createExternalSearchPage;
 
