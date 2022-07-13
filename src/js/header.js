@@ -28,7 +28,8 @@ export const controlPageHome = function () {
   refs.watchedLibrary.classList.remove('active-btn');
   refs.queueLibrary.classList.remove('active-btn');
 };
-const controlPageLib = function (e) {
+
+export const controlPageLib = function (e) {
   refs.linkHome.classList.remove('current');
   refs.linkMyLibrary.classList.add('current');
   refs.linkMyLibrary.classList.add('animate__animated', 'animate__fadeIn');
@@ -56,21 +57,21 @@ const controlPageLib = function (e) {
   refs.searchInput.value = '';
 };
 
-refs.headerNavigation.addEventListener('click', evt => {
-  evt.preventDefault();
+// refs.headerNavigation.addEventListener('click', evt => {
+//   evt.preventDefault();
 
-  if (evt.target === refs.linkMyLibrary) {
-    controlPageLib();
+//   if (evt.target === refs.linkMyLibrary) {
+//     controlPageLib();
 
-    refs.watchedLibrary.classList.remove('active-btn');
-    refs.queueLibrary.classList.remove('active-btn');
-    return;
-  } else if (evt.target === refs.linkHome) {
-    controlPageHome();
+//     refs.watchedLibrary.classList.remove('active-btn');
+//     refs.queueLibrary.classList.remove('active-btn');
+//     return;
+//   } else if (evt.target === refs.linkHome) {
+//     controlPageHome();
 
-    return;
-  }
-});
+//     return;
+//   }
+// });
 
 refs.logoHome.addEventListener('click', evt => {
   evt.preventDefault();

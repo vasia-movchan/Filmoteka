@@ -1,6 +1,10 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendEmailVerification, sendPasswordResetEmail  } from "firebase/auth";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { refs } from "./refs";
+import { myLibrary, MyLibraryNoLogin } from "./my-library";
+import { controlPageHome, controlPageLib } from "./header";
+import { loadTrendingMovies } from "./load-homepage";
 
 
 const firebaseConfig = {
@@ -28,7 +32,7 @@ const btnCloseModal = document.querySelector('.modal-auth__close');
 const btnResetPassword = document.querySelector('.modal-auth__btn--reset');
 const btnBack = document.querySelector('.modal-auth__btn--back');
 const forgotPassword = document.querySelector('.modal-auth__forgot');
-let uid = null;
+export let uid = null;
 
 form.addEventListener('submit', onSubmitLogin);
 btnLogout.addEventListener('click', onLogoutBtn);
@@ -135,7 +139,27 @@ onAuthStateChanged(auth, (user) => {
       title.textContent = `Hello, ${user.email.split('@')[0]}`;
       btnOpenModal.textContent = "LogOut";
       btnOpenModal.style.borderRight = "3px solid #69ff00";
-    } else {
+      refs.linkMyLibrary.addEventListener('click', myLibrary);
+      refs.linkMyLibrary.removeEventListener('click', MyLibraryNoLogin);
+      refs.headerNavigation.addEventListener('click', evt => {
+      evt.preventDefault();
+    
+      if (evt.target === refs.linkMyLibrary) {
+        controlPageLib();
+    
+        refs.watchedLibrary.classList.remove('active-btn');
+        refs.queueLibrary.classList.remove('active-btn');
+        return;
+      } else if (evt.target === refs.linkHome) {
+        controlPageHome();
+    
+        return;
+      }
+      });
+      refs.headerNavigation.removeEventListener('click', evt => {
+        evt.preventDefault();
+        });    
+      } else {
       uid = null;
       emailForm.classList.remove('is-hidden-auth');
       passwordForm.classList.remove('is-hidden-auth');
@@ -146,9 +170,32 @@ onAuthStateChanged(auth, (user) => {
       title.textContent = "Signup and login form";
       btnOpenModal.textContent = "Login";
       btnOpenModal.style.borderRight = "3px solid #ff001b";
+      refs.linkMyLibrary.removeEventListener('click', myLibrary);
+    refs.linkMyLibrary.addEventListener('click', MyLibraryNoLogin);
+    refs.headerNavigation.removeEventListener('click', evt => {
+      evt.preventDefault();
+    
+      if (evt.target === refs.linkMyLibrary) {
+        controlPageLib();
+    
+        refs.watchedLibrary.classList.remove('active-btn');
+        refs.queueLibrary.classList.remove('active-btn');
+        return;
+      } else if (evt.target === refs.linkHome) {
+        controlPageHome();
+    
+        return;
+      }
+      });
+      refs.headerNavigation.addEventListener('click', evt => {
+        evt.preventDefault();
+        });
+        controlPageHome();
+        loadTrendingMovies();
 
     }
   });
+
 
 function onEscCloseForm(e) {
   if (e.code === 'Escape') {
