@@ -74,6 +74,11 @@ body.dk-theme {
     fill: #ffffff;
   }
 
+    .sociallinks__icon:hover,
+    .sociallinks__icon:focus {
+      fill: $modal-button-color;
+    }
+
   .team__position {
     color: var(--header-text-color);
   }
