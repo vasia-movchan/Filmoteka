@@ -62,19 +62,8 @@ async function onGetMovieByExternalId(e) {
   refs.gallery.style.cssText = 'display: grid;';
   refs.gallery.style.removeProperty('justify-content');
   refs.gallery.style.removeProperty('align-items');
-
-  renderPagination(filmApiService.currentPage, filmApiService.totalPages);
   spinner.off();
   refs.gallery.innerHTML = createExternalSearchPage;
-
-  // filmApiService.getMovieByExternalID(external_id, external_source);
-  // spinner.on();
-  // const searchResult = await filmApiService.getMovieByExternalID(external_id, external_source);
-  // spinner.off();
-  // const createExternalSearchPage = searchResult.data.movie_results.map(renderMovieCard).join('');
-
-  // refs.gallery.innerHTML = createExternalSearchPage;
-  // refs.pagination.classList.add('visually-hidden');
 }
 
 async function loadTrendingMovies() {

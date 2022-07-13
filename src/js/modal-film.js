@@ -17,12 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 function closeFilmModal() {
   refs.modal.style.display = 'none';
   refs.filmModal.innerHTML = '';
+  document.body.style.overflow = 'auto';
 }
 
 async function onMovieCardClick(event) {
   event.preventDefault();
 
   scrollBtn.classList.remove('showBtn');
+  document.body.style.overflow = 'hidden';
 
   if (!event.target.closest('.movie-card__link')) {
     return;
@@ -316,5 +318,6 @@ function onClickClose(e) {
   if (e.target == refs.modal) {
     refs.modal.style.display = 'none';
     refs.filmModal.innerHTML = '';
+    document.body.style.overflow = 'auto';
   }
 }
