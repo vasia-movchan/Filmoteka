@@ -67,7 +67,7 @@ async function onGetMovieByExternalId(e) {
   refs.gallery.innerHTML = createExternalSearchPage;
 }
 
-async function loadTrendingMovies() {
+export async function loadTrendingMovies() {
   spinner.on();
   refs.gallery.style.display = 'grid';
   const response = await filmApiService.getTrendingMovies();

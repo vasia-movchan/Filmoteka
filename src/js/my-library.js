@@ -1,15 +1,28 @@
 import { refs } from './refs';
 import { renderMovieCard } from './render-elements';
 import { FilmApiService } from './api-service';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import { onLogoHomeClick } from './load-homepage';
 
-refs.linkMyLibrary.addEventListener('click', myLibrary);
+// refs.linkMyLibrary.addEventListener('click', myLibrary);
 refs.watchedLibrary.addEventListener('click', clearGallery);
 refs.watchedLibrary.addEventListener('click', onWatchedLibrary);
 refs.queueLibrary.addEventListener('click', clearGallery);
 refs.queueLibrary.addEventListener('click', onQueueLibrary);
 
 const filmApiService = new FilmApiService();
+
+
+export function MyLibraryNoLogin () {
+  Notify.warning("To access the library - please authorize", {
+    timeout: 2000,
+    position: 'center-top',
+
+  });
+}
+
+
 
 export function myLibrary() {
   clearGallery();
@@ -120,3 +133,4 @@ function getFilmDataFromLocalStorage(film) {
   const genresList = genresName.join(', ');
   genresInfo.textContent = `${genresList} | ${film.release_date.slice(0, 4)}`;
 }
+
