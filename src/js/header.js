@@ -2,24 +2,21 @@ import { refs } from './refs.js';
 
 export const controlPageHome = function () {
   refs.linkMyLibrary.classList.remove('current');
-  refs.linkHome.classList.add('current');
-  refs.linkHome.classList.add('animate__animated', 'animate__fadeIn');
+  refs.linkHome.classList.add('current', 'animate__animated', 'animate__fadeIn');
   refs.linkHome.style.setProperty('--animate-duration', '0.25s');
   refs.linkHome.addEventListener('animationend', () => {
     refs.linkHome.classList.remove('animate__animated', 'animate__fadeIn');
     refs.linkHome.style.removeProperty('--animate-duration', '0.25s');
   });
   refs.header.classList.remove('lib-bg');
-  refs.header.classList.add('header-bg');
-  refs.header.classList.add('animate__animated', 'animate__fadeIn');
+  refs.header.classList.add('header-bg', 'animate__animated', 'animate__fadeIn');
   refs.header.style.setProperty('--animate-duration', '0.25s');
   refs.header.addEventListener('animationend', () => {
     refs.header.classList.remove('animate__animated', 'animate__fadeIn');
     refs.header.style.removeProperty('--animate-duration', '0.25s');
   });
   refs.searchForm.classList.remove('visually-hidden');
-  refs.headerButtons.classList.add('visually-hidden');
-  refs.headerButtons.classList.add('animate__animated', 'animate__fadeIn');
+  refs.headerButtons.classList.add('visually-hidden', 'animate__animated', 'animate__fadeIn');
   refs.headerButtons.style.setProperty('--animate-duration', '0.25s');
   refs.headerButtons.addEventListener('animationend', () => {
     refs.headerButtons.classList.remove('animate__animated', 'animate__fadeIn');
@@ -31,24 +28,21 @@ export const controlPageHome = function () {
 
 export const controlPageLib = function (e) {
   refs.linkHome.classList.remove('current');
-  refs.linkMyLibrary.classList.add('current');
-  refs.linkMyLibrary.classList.add('animate__animated', 'animate__fadeIn');
+  refs.linkMyLibrary.classList.add('current', 'animate__animated', 'animate__fadeIn');
   refs.linkMyLibrary.style.setProperty('--animate-duration', '0.25s');
   refs.linkMyLibrary.addEventListener('animationend', () => {
     refs.linkMyLibrary.classList.remove('animate__animated', 'animate__fadeIn');
     refs.linkMyLibrary.style.removeProperty('--animate-duration', '0.25s');
   });
   refs.header.classList.remove('header-bg');
-  refs.header.classList.add('lib-bg');
-  refs.header.classList.add('animate__animated', 'animate__fadeIn');
-  refs.header.style.setProperty('--animate-duration', '0.5s');
+  refs.header.classList.add('lib-bg', 'animate__animated', 'animate__fadeIn');
+  refs.header.style.setProperty('--animate-duration', '0.25s');
   refs.header.addEventListener('animationend', () => {
     refs.header.classList.remove('animate__animated', 'animate__fadeIn');
     refs.header.style.removeProperty('--animate-duration', '0.25s');
   });
   refs.headerButtons.classList.remove('visually-hidden');
-  refs.searchForm.classList.add('visually-hidden');
-  refs.searchForm.classList.add('animate__animated', 'animate__fadeIn');
+  refs.searchForm.classList.add('visually-hidden', 'animate__animated', 'animate__fadeIn');
   refs.searchForm.style.setProperty('--animate-duration', '0.25s');
   refs.searchForm.addEventListener('animationend', () => {
     refs.searchForm.classList.remove('animate__animated', 'animate__fadeIn');
