@@ -48,10 +48,13 @@ async function onGetMovieByExternalId(e) {
   filmApiService.getMovieByExternalID(external_id, external_source);
   spinner.on();
   const searchResult = await filmApiService.getMovieByExternalID(external_id, external_source);
-  const searchResultWithGenreNames = filmApiService.getGenresNamesFromID(searchResult, filmApiService.genres);
+  const searchResultWithGenreNames = filmApiService.getGenresNamesFromID(
+    searchResult,
+    filmApiService.genres
+  );
   spinner.off();
   const createExternalSearchPage = searchResultWithGenreNames.map(renderMovieCard).join('');
-  console.log(searchResult);
+
   if (searchResult.data.movie_results.length === 0) {
     spinner.off();
     onInvalidSearchQuery();
